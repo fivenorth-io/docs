@@ -15,6 +15,8 @@ Install https://www.wireguard.com/install/ client for your machine. Then import 
 
 ## Development Setup
 
+Ideally you should get a dev env run locally in your docker compose. But sometime it can be useful to connect to devnet node, we don't recommend to do below step for MainNet but could be valuable to inteactively dev against a dev node node. 
+
 ### Port forward to ledger grpc 
 
 When you want to connect to the k8s cluster, activate your vpn. From the shell run the below command
