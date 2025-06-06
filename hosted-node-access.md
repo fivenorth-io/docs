@@ -7,10 +7,9 @@ Five North Hosted Node Bundle is an archive contains a few things:
 
 You should have received a bundle share securely through Bitwarden. Download it, extract it somewhere. It usually contains 3 files
 
-<your-company-name>-<your-name>.conf this is your vpn profile
-
-Devnet: this is kubeconfig for devnet. You should store it somewhere. A good place is ~/.kube/your-company-name/devnet
-Mainnet: similar to above for mainnet. ~/.kube/your-company-name/mainnet
+- <your-company-name>-<your-name>.conf: this is your vpn profile
+- devnet: this is kubeconfig for devnet. You should store it somewhere. A good place is ~/.kube/your-company-name/devnet
+- mainnet: similar to above for mainnet. ~/.kube/your-company-name/mainnet
 
 Install https://www.wireguard.com/install/ client for your machine. Then import the VPN profile
 
