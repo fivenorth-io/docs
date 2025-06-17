@@ -11,6 +11,8 @@ theme:
   favicon: assets/favicon.jpg
   features:
     - navigation.footer
+    - navigation.tabs
+    - navigation.tabs.sticky
   palette:
     # Dark Mode
     - media: "(prefers-color-scheme: light)"

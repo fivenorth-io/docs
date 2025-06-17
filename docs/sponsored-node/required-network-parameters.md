@@ -4,7 +4,9 @@ To initialize your validator node, you need the following parameters that define
 
 ??? Abstract "Resources"
     **DevNet:** [https://docs.dev.sync.global/validator_operator/validator_helm.html](https://docs.dev.sync.global/validator_operator/validator_helm.html)
+
     **TestNet:** [https://docs.test.sync.global/validator_operator/validator_helm.html](https://docs.test.sync.global/validator_operator/validator_helm.html)
+
     **MainNet:** [https://docs.sync.global/validator_operator/validator_helm.html](https://docs.sync.global/validator_operator/validator_helm.html)
 
 ### MIGRATION_ID

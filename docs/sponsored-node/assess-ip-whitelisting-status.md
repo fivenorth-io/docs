@@ -4,16 +4,18 @@ To initialize your validator node, you need the following parameters that define
 
 !!! tip "Quorum"
 
-    **Please note:** A quorum of** 2 out of 3 Super Validator** nodes is sufficient to proceed with deploying the stack. The total number of Super Validators may vary depending on the network.
+    **Please note:** A quorum of** 2/3 of Super Validators** nodes is sufficient to proceed with deploying the stack. The total number of Super Validators may vary depending on the network.
 
 ??? Abstract "Resources"
     **DevNet:** [https://docs.dev.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview](https://docs.dev.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview)
+
     **TestNet:** [https://docs.test.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview](https://docs.test.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview)
+
     **MainNet:** [https://docs.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview](https://docs.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview)
 
 ### Validating that your IP has been approved
 
-!!! tip "Quorum"
+!!! tip "Egress IP"
 
     **Please note:** The following commands must run from the same egress IP from which you want to deploy your validator, e.g. from the same server that will run the docker compose or Kubernetes stack.
 
