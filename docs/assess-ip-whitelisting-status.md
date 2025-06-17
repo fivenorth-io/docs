@@ -2,6 +2,15 @@
 
 To initialize your validator node, you need the following parameters that define the network you’re onboarding to and the secret required for doing so.
 
+!!! tip "Quorum"
+
+    **Please note:** A quorum of** 2 out of 3 Super Validator** nodes is sufficient to proceed with deploying the stack. The total number of Super Validators may vary depending on the network.
+
+??? Abstract "Resources"
+    **DevNet:** [https://docs.dev.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview](https://docs.dev.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview)
+    **TestNet:** [https://docs.test.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview](https://docs.test.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview)
+    **MainNet:** [https://docs.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview](https://docs.sync.global/validator_operator/validator_onboarding.html#onboarding-process-overview)
+
 ### Validating that your IP has been approved
 
 !!! tip "Quorum"
