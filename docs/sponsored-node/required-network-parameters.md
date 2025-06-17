@@ -61,9 +61,9 @@ The scan URL of an SV that you trust and that is reachable by your validator, of
     https://scan.sv-1.global.canton.network.sync.global
     ```
 
-### Validating that your IP has been approved
+### Get Onboarding Secret
 
-!!! tip "Quorum"
+!!! tip "Egress IP"
 
     **Please note:** The following commands must run from the same egress IP from which you want to deploy your validator, e.g. from the same server that will run the docker compose or Kubernetes stack.
 
