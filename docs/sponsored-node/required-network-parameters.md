@@ -69,7 +69,7 @@ The scan URL of an SV that you trust and that is reachable by your validator, of
 
 === "TestNet"
 
-    Self-serve onboarding secrets are not available for MainNet. Please contact nodesupport@fivenorth.io to start the process
+    Self-serve onboarding secrets are not available for TestNet. Please contact nodesupport@fivenorth.io to start the process
 
 === "MainNet"
 
