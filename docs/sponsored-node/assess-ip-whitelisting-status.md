@@ -22,7 +22,7 @@ To initialize your validator node, you need the following parameters that define
 === "DevNet"
 
     ```bash title="Check whitelisting status in devnet"
-    for url in $(curl -sSL https://scan.sv-1.dev.global.canton.network.sync.global/api/scan/v0/scans | jq -r '.scans | .[].scans | .[] | .publicUrl' ); do
+    for url in $(curl -sSL https://scan.sv-1.dev.global.canton.network.fivenorth.io/api/scan/v0/scans | jq -r '.scans | .[].scans | .[] | .publicUrl' ); do
       echo -n "$url: ";
       curl -sSL --connect-timeout 5 --fail-with-body $url/api/scan/version | jq -r '.version';
     done
@@ -31,7 +31,7 @@ To initialize your validator node, you need the following parameters that define
 === "TestNet"
 
     ```bash title="Check whitelisting status in TestNet"
-    for url in $(curl -sSL https://scan.sv-1.test.global.canton.network.sync.global/api/scan/v0/scans | jq -r '.scans | .[].scans | .[] | .publicUrl' ); do
+    for url in $(curl -sSL https://scan.sv-1.test.global.canton.network.fivenorth.io/api/scan/v0/scans | jq -r '.scans | .[].scans | .[] | .publicUrl' ); do
       echo -n "$url: ";
       curl -sSL --connect-timeout 5 --fail-with-body $url/api/scan/version | jq -r '.version';
     done
@@ -40,7 +40,7 @@ To initialize your validator node, you need the following parameters that define
 === "MainNet"
 
     ```bash title="Check whitelisting status in MainNet"
-    for url in $(curl -sSL https://scan.sv-1.global.canton.network.sync.global/api/scan/v0/scans | jq -r '.scans | .[].scans | .[] | .publicUrl' ); do
+    for url in $(curl -sSL https://scan.sv-1.global.canton.network.fivenorth.io/api/scan/v0/scans | jq -r '.scans | .[].scans | .[] | .publicUrl' ); do
       echo -n "$url: ";
       curl -sSL --connect-timeout 5 --fail-with-body $url/api/scan/version | jq -r '.version';
     done
