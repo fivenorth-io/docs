@@ -41,24 +41,18 @@ The scan URL of an SV that you trust and that is reachable by your validator, of
 
     ```bash
     https://scan.sv-1.dev.global.canton.network.fivenorth.io
-    or
-    https://scan.sv-1.dev.global.canton.network.sync.global
     ```
 
 === "TestNet"
 
     ```bash
     https://scan.sv-1.test.global.canton.network.fivenorth.io
-    or
-    https://scan.sv-1.test.global.canton.network.sync.global
     ```
 
 === "MainNet"
 
     ```bash
     https://scan.sv-1.global.canton.network.fivenorth.io
-    or
-    https://scan.sv-1.global.canton.network.sync.global
     ```
 
 ### Get Onboarding Secret
@@ -75,10 +69,8 @@ The scan URL of an SV that you trust and that is reachable by your validator, of
 
 === "TestNet"
 
-    ```bash title="Get Onboarding Secret from TestNet"
-    curl -X POST https://sv.sv-1.test.global.canton.network.fivenorth.io/api/sv/v0/devnet/onboard/validator/prepare
-    ```
+    Self-serve onboarding secrets are not available for MainNet. Please contact nodesupport@fivenorth.io to start the process
 
 === "MainNet"
 
-    Self-serve onboarding secrets are not available for MainNet. Please contact Five North or your designated sponsor to obtain one for MainNet access.
+    Self-serve onboarding secrets are not available for MainNet. Please contact nodesupport@fivenorth.io to start the process
