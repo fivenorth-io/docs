@@ -32,7 +32,6 @@ theme:
     - search.suggest
     - toc.follow
 
-
   palette:
     # Dark Mode
     - media: "(prefers-color-scheme: light)"
@@ -73,6 +72,8 @@ markdown_extensions:
       alternate_style: true
   - admonition
   - pymdownx.details
+  - toc:
+      permalink: true
 
 copyright: Copyright &copy; 2025 Five North Group
 
