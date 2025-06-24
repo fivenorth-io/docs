@@ -85,3 +85,8 @@ nav:
       - Network Param: sponsored-node/network-parameters.md
   - 5N CPN:
     - Overview: 5n-cpm/introduction.md
+    - Installation: 5n-cpm/install.md
+    - Guide:
+      - DAR management: 5n-cpm/dar-management.md
+      - Party Management: 5n-cpm/party-management.md
+      - Shell: 5n-cpm/shell.md

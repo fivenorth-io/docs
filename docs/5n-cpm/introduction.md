@@ -9,3 +9,19 @@ One of the standout features is its interactive shell. This allows you to execut
 5N CPM is built to help developers and administrators with the tools needed to effectively deploy, monitor, and maintain their Canton-based applications.
 
 We welcome any feedback, email us at nodesupport@fivenorth.io
+
+# Features
+
+- Managar DAR files, multi uploads.
+- Manage User&amp; Party.
+- Interactive Shell Execution/History
+
+# Demo
+
+## Videos
+
+TBD
+
+## Screenshots
+
+TBD
