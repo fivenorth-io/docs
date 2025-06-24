@@ -1,4 +1,4 @@
-site_name: Documentation
+site_name: Operation Documents
 site_url: https://www.fivenorthgroup.com/
 extra_css:
   - stylesheets/extra.css
@@ -13,6 +13,26 @@ theme:
     - navigation.footer
     - navigation.tabs
     - navigation.tabs.sticky
+
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+
+    - navigation.sections
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+
   palette:
     # Dark Mode
     - media: "(prefers-color-scheme: light)"
@@ -31,6 +51,7 @@ theme:
         name: Light mode
       primary: black
       accent: black
+
 
 markdown_extensions:
   - attr_list
@@ -54,3 +75,13 @@ markdown_extensions:
   - pymdownx.details
 
 copyright: Copyright &copy; 2025 Five North Group
+
+nav:
+  - 5N Infra:
+    - index.md
+    - Hosted Node: hosted-node/hosted-node-access.md
+    - Sponsor:
+      - IP Restriction: sponsored-node/check-ip-allow-status.md
+      - Network Param: sponsored-node/network-parameters.md
+  - 5N CPN:
+    - Overview: 5n-cpm/introduction.md
