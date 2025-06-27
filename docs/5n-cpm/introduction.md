@@ -67,6 +67,6 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 
 ### Shell
 
-![Shell](../assets/5n-cpm/shell.png){: width="25%"}
+![Shell](../assets/5n-cpm/040 shell.png){: width="25%"}
 
 
