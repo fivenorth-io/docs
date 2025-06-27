@@ -19,6 +19,10 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 
 ## Demo Video
 
+<video controls>
+  <source src="/assets/5n-cpm/2025-06-26-manage-dar.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Screenshots
 
