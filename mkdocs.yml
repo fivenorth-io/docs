@@ -52,6 +52,10 @@ theme:
       accent: black
 
 
+plugins:
+  - search
+  - glightbox
+
 markdown_extensions:
   - attr_list
   - pymdownx.emoji:
@@ -68,6 +72,9 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: "pymdownx.details"
+          class: "details"
+          format: "!!python/name:pymdownx.superfences.fence_details_format"
   - pymdownx.tabbed:
       alternate_style: true
   - admonition
@@ -84,7 +91,7 @@ nav:
     - Sponsor:
       - IP Restriction: sponsored-node/check-ip-allow-status.md
       - Network Param: sponsored-node/network-parameters.md
-  - 5N CPN:
+  - 5N CPM:
     - Overview: 5n-cpm/introduction.md
     - Installation: 5n-cpm/install.md
     - Guide:
