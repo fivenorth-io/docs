@@ -1,10 +1,12 @@
 # Installation
 
-In order to deploy the Utility, you will need to complete the following steps:
+In order to deploy 5n cpm, you will need to complete the following steps:
 
 - Getting a license. License is per validator. Reach out to nodesupport@fivenorth.io or ping our team on Slack to acquire a license.
 
 - Install the software into your kubernetes cluster using our public helm chart.
+
+- Expose the deploy with an ingress
 
 ## License
 
@@ -37,5 +39,3 @@ Simply expose the port 8080 of the 5n-cpn service. This is an example ingress wi
 
 ```
 ```
-
-
