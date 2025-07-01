@@ -94,6 +94,7 @@ nav:
   - 5N CPM:
     - Overview: 5n-cpm/introduction.md
     - Installation: 5n-cpm/install.md
+    - Release: 5n-cpm/release.md
     - Guide:
       - DAR management: 5n-cpm/dar-management.md
       - Party Management: 5n-cpm/party-management.md

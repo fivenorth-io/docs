@@ -18,15 +18,21 @@ Follow the same steps for setting up auth0 or an External OIDC Provider. Specifi
 
 With Auth0, the value looks like this
 
-- AUTH URL: https://<tenand-id>.<region>.auth0.com
-- client id: <some-id>@clients
+- AUTH URL: `https://<tenand-id>.<region>.auth0.com`
+- client id: `<some-id>@clients`
 
 
 ### Deploy with the helm chart
 
 ```
-helm upgrade --install 5n-cpm-app oci://ghcr.io/fivenorth-io/helm/5n-cpm-app -n validator1 --version 0.3.0 --set auth.url=<auth-app-url> --set auth.clientId=<client-id>
+helm upgrade --install 5n-cpm-app \
+    oci://ghcr.io/fivenorth-io/helm/5n-cpm-app \
+    -n <namespace> \
+    --version <version> \
+    --set auth.url=<auth-app-url> --set auth.clientId=<client-id>
 ```
+
+To get the latest version, vist [release note](/5n-cpm/release/)
 
 ### Ingress
 
@@ -36,7 +42,7 @@ Simply create an ingress that route the port 8080 of the 5n-cpm-app service. Thi
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 5n-cpm
+  name: 5n-cpm-app
   namespace: $NAMESPACE
 spec:
   tls:
@@ -64,7 +70,7 @@ If your setup has TLS termination outside the cluster it can just be
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 5n-cpn
+  name: 5n-cpm-app
   namespace: $NAMESPACE
 spec:
   ingressClassName: nginx
