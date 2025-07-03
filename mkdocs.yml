@@ -91,7 +91,7 @@ nav:
     - Sponsor:
       - IP Restriction: sponsored-node/check-ip-allow-status.md
       - Network Param: sponsored-node/network-parameters.md
-  - 5N CPM:
+  - 5N Dashboard:
     - Overview: 5n-cpm/introduction.md
     - Installation: 5n-cpm/install.md
     - Release: 5n-cpm/release.md

@@ -1,6 +1,6 @@
 # Overview
 
-Welcome to the `5N CPM`, short for `5N Canton Package Manager`, a performance and intuitive application designed to support Canton validator operation. The app simplifies the management of DAR files, users and party on the validator. It is designed to be lean, simple, and fast, easily deployable as a single binary written in Golang, with a low memory footprint. This single binary including both of the backend and the UI.
+Welcome to the `5N Dashboard`, a performance and intuitive application designed to support Canton validator operation. The app simplifies the management of DAR files, users and party on the validator. It is designed to be lean, simple, and fast, easily deployable as a single binary written in Golang, with a low memory footprint. This single binary including both of the backend and the UI.
 
 Beyond DAR file management, this application provides comprehensive support for managing parties and users directly on your Canton validator. You can effortlessly onboard new participants, manage their permissions, and ensure a secure and efficient operational environment.
 
