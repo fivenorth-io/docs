@@ -6,9 +6,9 @@ Beyond DAR file management, this application provides comprehensive support for 
 
 One of the standout features is its interactive shell. This allows you to execute shell scripts directly within your Kubernetes cluster, with the output streamed in real-time to your browser. This capability provides unparalleled control and visibility, making debugging, deployment, and operational tasks significantly more efficient. All the common credential is auto populate and set in environment variable for your convenience.
 
-5N CPM was designed to be stateless, operate along with en existing cluster, you can add it to a fresh new system, or to an already deployed validator. It doesn't want to control and dictacte how you deploy your Canton validator. As long as we can connect to Ledger API and Ledger Admin API, 5N CPM will works.
+`5N Dashboard` was designed to be stateless, operate along with en existing cluster, you can add it to a fresh new system, or to an already deployed validator. It doesn't want to control and dictacte how you deploy your Canton validator. As long as we can connect to Ledger API and Ledger Admin API, `5N Dashboard` will works.
 
-5N CPM goal is to help developers and administrators with the tools needed to effectively deploy, monitor, maintain and backup both of the node and their Canton-based applications.
+`5N Dashboard` goal is to help developers and administrators with the tools needed to effectively deploy, monitor, maintain and backup both of the node and their Canton-based applications.
 
 We welcome any feedback, email us at nodesupport@fivenorth.io
 

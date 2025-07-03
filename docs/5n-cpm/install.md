@@ -10,11 +10,11 @@ In order to deploy 5n cpm, you will need to complete the following steps:
 
 ## Setup
 
-5N CPM is ideally deployed into the same cluster where your validator run.
+`5N Dashboard` is ideally deployed into the same cluster where your validator run.
 
 ### Create an OIDC application for the UI Frontend
 
-Follow the same steps for setting up auth0 or an External OIDC Provider. Specifically, create a new application similar to the wallet/cns named '5N CPM UI'. Once this has been created, take note of your app URL and its client id.
+Follow the same steps for setting up auth0 or an External OIDC Provider. Specifically, create a new application similar to the wallet/cns named '`5N Dashboard` UI'. Once this has been created, take note of your app URL and its client id.
 
 With Auth0, the value looks like this
 
