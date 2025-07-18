@@ -24,28 +24,28 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 ### DARs management
 
 <video controls>
-  <source src="/assets/5n-cpm/2025-06-26 23-53-38 dar.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/2025-06-26 23-53-38 dar.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Users management
 
 <video controls>
-  <source src="/assets/5n-cpm/2025-06-26 23-20-29 user.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/2025-06-26 23-20-29 user.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Parties management
 
 <video controls>
-  <source src="/assets/5n-cpm/2025-06-27 00-04-28.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/2025-06-27 00-04-28.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Shell execution
 
 <video controls>
-  <source src="/assets/5n-cpm/2025-06-27 00-17-44.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/2025-06-27 00-17-44.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -53,22 +53,22 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 
 ### DAR files management
 
-![DAR Management](../assets/5n-cpm/001 list dar.png){: width="20%"} ![Search DAR](../assets/5n-cpm/002 seach dar.png){: width="20%"} ![Upload DAR](../assets/5n-cpm/003 upload dar.png){: width="20%"} ![Upload DAR](../assets/5n-cpm/004 upload suceed.png){: width="20%"}
+![DAR Management](../assets/5n-dashboard/001 list dar.png){: width="20%"} ![Search DAR](../assets/5n-dashboard/002 seach dar.png){: width="20%"} ![Upload DAR](../assets/5n-dashboard/003 upload dar.png){: width="20%"} ![Upload DAR](../assets/5n-dashboard/004 upload suceed.png){: width="20%"}
 
 ### Users Management
-![List User](../assets/5n-cpm/010 list user.png){: width="25%"} ![Create User](../assets/5n-cpm/011 create user.png){: width="25%"} ![Delete User](../assets/5n-cpm/012 delete user.png){: width="25%"}
+![List User](../assets/5n-dashboard/010 list user.png){: width="25%"} ![Create User](../assets/5n-dashboard/011 create user.png){: width="25%"} ![Delete User](../assets/5n-dashboard/012 delete user.png){: width="25%"}
 
 
 ### Parties Management
 
-![List Party](../assets/5n-cpm/020 list party.png){: width="25%"} ![Local Party](../assets/5n-cpm/021 local party.png){: width="25%"} ![Create Party](../assets/5n-cpm/022 create party.png){: width="25%"} 
+![List Party](../assets/5n-dashboard/020 list party.png){: width="25%"} ![Local Party](../assets/5n-dashboard/021 local party.png){: width="25%"} ![Create Party](../assets/5n-dashboard/022 create party.png){: width="25%"} 
 
 ### Backup
 
-![Backup](../assets/5n-cpm/030 backup.png){: width="25%"}
+![Backup](../assets/5n-dashboard/030 backup.png){: width="25%"}
 
 ### Shell
 
-![Shell](../assets/5n-cpm/040 shell.png){: width="25%"}
+![Shell](../assets/5n-dashboard/040 shell.png){: width="25%"}
 
 

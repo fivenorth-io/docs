@@ -92,10 +92,10 @@ nav:
       - IP Restriction: sponsored-node/check-ip-allow-status.md
       - Network Param: sponsored-node/network-parameters.md
   - 5N Dashboard:
-    - Overview: 5n-cpm/introduction.md
-    - Installation: 5n-cpm/install.md
-    - Release: 5n-cpm/release.md
+    - Overview: 5n-dashboard/introduction.md
+    - Installation: 5n-dashboard/install.md
+    - Release: 5n-dashboard/release.md
     - Guide:
-      - DAR management: 5n-cpm/dar-management.md
-      - Party Management: 5n-cpm/party-management.md
-      - Shell: 5n-cpm/shell.md
+      - DAR management: 5n-dashboard/dar-management.md
+      - Party Management: 5n-dashboard/party-management.md
+      - Shell: 5n-dashboard/shell.md

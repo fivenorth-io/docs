@@ -1,12 +1,11 @@
 # Installation
 
-In order to deploy 5n cpm, you will need to complete the following steps:
+In order to deploy 5N Dashboard, you will need to complete the following steps:
 
-- Getting a license. License is per validator. Reach out to nodesupport@fivenorth.io or ping our team on Slack to acquire a license.
-
+- Configure an OIDC application for the UI of 5N Dashboard.
 - Install the software into your kubernetes cluster using our public helm chart.
-
 - Expose the deploy with an ingress
+- (Optionally): To enable database backup, pass in database address.
 
 ## Setup
 
@@ -25,24 +24,24 @@ With Auth0, the value looks like this
 ### Deploy with the helm chart
 
 ```
-helm upgrade --install 5n-cpm-app \
-    oci://ghcr.io/fivenorth-io/helm/5n-cpm-app \
+helm upgrade --install 5n-dashboard-app \
+    oci://ghcr.io/fivenorth-io/helm/5n-dashboard-app \
     -n <namespace> \
     --version <version> \
     --set auth.url=<auth-app-url> --set auth.clientId=<client-id>
 ```
 
-To get the latest version, vist [release note](/5n-cpm/release/)
+To get the latest version, vist [release note](/5n-dashboard/release/)
 
 ### Ingress
 
-Simply create an ingress that route the port 8080 of the 5n-cpm-app service. This is an example ingress with ingress nginx.
+Simply create an ingress that route the port 8080 of the 5n-dashboard-app service. This is an example ingress with ingress nginx.
 
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 5n-cpm-app
+  name: 5n-dashboard-app
   namespace: $NAMESPACE
 spec:
   tls:
@@ -58,7 +57,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: 5n-cpm-app
+              name: 5n-dashboard-app
               port:
                 number: 8080
 ```
@@ -70,7 +69,7 @@ If your setup has TLS termination outside the cluster it can just be
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 5n-cpm-app
+  name: 5n-dashboard-app
   namespace: $NAMESPACE
 spec:
   ingressClassName: nginx
@@ -82,7 +81,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: 5n-cpm-app
+              name: 5n-dashboard-app
               port:
                 number: 8080
 ```
