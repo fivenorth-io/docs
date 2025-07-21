@@ -18,7 +18,8 @@ Follow the same steps for setting up auth0 or an External OIDC Provider. Specifi
 With Auth0, the value looks like this
 
 - AUTH URL: `https://<tenand-id>.<region>.auth0.com`
-- client id: `<some-id>@clients`
+- Client id: `<some-id>@clients`
+- Audience: the audienec value of the API
 
 
 ### Deploy with the helm chart
@@ -28,12 +29,14 @@ helm upgrade --install 5n-dashboard-app \
     oci://ghcr.io/fivenorth-io/helm/5n-dashboard-app \
     -n <namespace> \
     --version <version> \
-    --set auth.url=<auth-app-url> --set auth.clientId=<client-id>
+    --set auth.url=<auth-app-url> --set auth.clientId=<client-id> --set auth.audience=<audience>
 ```
 
 To get the latest version, vist [release note](/5n-dashboard/release/)
 
 ### Ingress
+
+We struct the app in a way there is just a single deployment to handle  both of UI and backend, therefore simplify routing layer.
 
 Simply create an ingress that route the port 8080 of the 5n-dashboard-app service. This is an example ingress with ingress nginx.
 
@@ -85,3 +88,8 @@ spec:
               port:
                 number: 8080
 ```
+
+
+### Access the dashboard
+
+After installing the dashboard, you can now login to it with the user that have primary party is the same as your validator operator party. Usually, this will be the same user that can access your validator wallet.

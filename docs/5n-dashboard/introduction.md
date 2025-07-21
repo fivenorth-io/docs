@@ -16,8 +16,12 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 
 - Managar DAR files, multi uploads.
 - Manage User&amp; Party.
-- Auto Backup Node Identities and Database to cloud: support S3, GCS, and Wasabi and CloudFlare R2
 - Interactive Shell Execution/History
+- Backup Identitities Dump
+
+## Upcoming 
+
+- Auto Backup Node Identities and Database to cloud: support S3, GCS, and Wasabi and CloudFlare R2
 
 ## Demo Videos
 
