@@ -97,5 +97,6 @@ nav:
     - Release: 5n-dashboard/release.md
     - Guide:
       - DAR management: 5n-dashboard/dar-management.md
+      - User management: 5n-dashboard/user-management.md
       - Party Management: 5n-dashboard/party-management.md
       - Shell: 5n-dashboard/shell.md
