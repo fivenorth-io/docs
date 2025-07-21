@@ -4,29 +4,32 @@ In order to deploy 5N Dashboard, you will need to complete the following steps:
 
 - Configure an OIDC application for the UI of 5N Dashboard.
 - Install the software into your kubernetes cluster using our public helm chart.
-- Expose the deploy with an ingress
-- (Optionally): To enable database backup, pass in database address.
+- Expose the deployment with an ingress
+- Upcoming: To enable database backup, pass in database address and s3 credential
 
 ## Setup
 
-`5N Dashboard` is ideally deployed into the same cluster where your validator run.
+`5N Dashboard` is ideally deployed into the same cluster where your validator runs.
 
 ### Create an OIDC application for the UI Frontend
 
-Follow the same steps for setting up auth0 or an External OIDC Provider. Specifically, create a new application similar to the wallet/cns named '`5N Dashboard` UI'. Once this has been created, take note of your app URL and its client id.
+Follow the same steps for setting up a [auth0](https://docs.test.sync.global/validator_operator/validator_helm.html#configuring-an-auth0-tenant) or an [External OIDC Provider](https://docs.test.sync.global/validator_operator/validator_helm.html#oidc-provider-requirements). Specifically, create a new application similar to the wallet/cns and call it `5N Dashboard UI`. Once this has been created, take note of your app URL, its client id and audience.
 
-With Auth0, the value looks like this
+Example, with Auth0, the value looks like this
 
-- AUTH URL: `https://<tenand-id>.<region>.auth0.com`
+- OIDC Authentication App URL: `https://<tenand-id>.<region>.auth0.com`. For other system this will usually 
 - Client id: `<some-id>@clients`
-- Audience: the audienec value of the API
+- Audience: the audience of your app
 
+Usually, you can follow exactly the same setup and URL configuration you use for the wallet ui app with different client id (or different audience if you had configure a separate audience).
 
 ### Deploy with the helm chart
 
+Once having all the above value, use helm to deploy the latest version.
+
 ```
-helm upgrade --install 5n-dashboard-app \
-    oci://ghcr.io/fivenorth-io/helm/5n-dashboard-app \
+helm upgrade --install 5n-dashboard \
+    oci://ghcr.io/fivenorth-io/helm/5n-dashboard \
     -n <namespace> \
     --version <version> \
     --set auth.url=<auth-app-url> --set auth.clientId=<client-id> --set auth.audience=<audience>
@@ -44,13 +47,17 @@ Simply create an ingress that route the port 8080 of the 5n-dashboard-app servic
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 5n-dashboard-app
-  namespace: $NAMESPACE
+  name: dashboard-ingress
+  namespace: <name-space>
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "128M"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
 spec:
   tls:
   - hosts:
-    - host-name
-  - secretName: ${SECRET_NAME}
+    - host-name-to-access-the-dashboard
+  - secretName: <secret-name-for-cert-of-our-ingress>
   ingressClassName: nginx
   rules:
   - host: host-name
@@ -60,20 +67,28 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: 5n-dashboard-app
+              name: fivenorth-dashboard
               port:
                 number: 8080
 ```
 
-If your setup has TLS termination outside the cluster it can just be
+If your DAR files are small and you usually won't bundle with multi upload, you can adjust the annotations to a reasonable number to match your expectation.
+
+
+If your setup has TLS termination outside the cluster(such as at AWS/ALB load balancer, and the request just pass plaintext HTTP into the ingress service), your can simplify ingress to just
+
 
 
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: 5n-dashboard-app
-  namespace: $NAMESPACE
+  name: dashboard-ingress
+  namespace: <name-space>
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "128M"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
 spec:
   ingressClassName: nginx
   rules:
@@ -84,11 +99,10 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: 5n-dashboard-app
+              name: fivenorth-dashboard
               port:
                 number: 8080
 ```
-
 
 ### Access the dashboard
 

@@ -28,14 +28,14 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 ### DARs management
 
 <video controls>
-  <source src="/assets/5n-dashboard/2025-06-26 23-53-38 dar.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/dar-management.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Users management
 
 <video controls>
-  <source src="/assets/5n-dashboard/2025-06-26 23-20-29 user.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/manage-user.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
