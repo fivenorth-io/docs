@@ -42,14 +42,14 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 ### Parties management
 
 <video controls>
-  <source src="/assets/5n-dashboard/2025-06-27 00-04-28.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/manage-party.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Shell execution
 
 <video controls>
-  <source src="/assets/5n-dashboard/2025-06-27 00-17-44.mp4" type="video/mp4">
+  <source src="/assets/5n-dashboard/run-shell.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
