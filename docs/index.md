@@ -5,4 +5,4 @@
 
 ## Canton Network
 
-5N is a supper validator on Canton network and we can also help with your onboarding to Canton by sponsoring your node. Contact nodesupport@fivenorth.io for detail
+5N is a Supper Validator on Canton network and we can also help with your onboarding to Canton by sponsoring your node. Contact nodesupport@fivenorth.io for detail
