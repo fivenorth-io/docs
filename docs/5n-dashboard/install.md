@@ -9,7 +9,7 @@ To deploy the 5N Dashboard, you’ll need to complete these steps:
 
 ## Setup
 
-`5N Dashboard` ss ideally deployed in the same cluster where your validator runs.
+`5N Dashboard` is ideally deployed in the same cluster where your validator runs.
 
 ### Configure an OIDC application for the 5N Dashboard UI.
 
