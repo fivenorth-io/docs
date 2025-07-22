@@ -1,19 +1,19 @@
 # Installation
 
-In order to deploy 5N Dashboard, you will need to complete the following steps:
+To deploy the 5N Dashboard, you’ll need to complete these steps:
 
-- Configure an OIDC application for the UI of 5N Dashboard.
-- Install the software into your kubernetes cluster using our public helm chart.
-- Expose the deployment with an ingress
-- Upcoming: To enable database backup, pass in database address and s3 credential
+- Configure an OIDC application for the 5N Dashboard UI.
+- Install the software into your Kubernetes cluster using our public Helm chart.
+- Expose the deployment via an ingress.
+- (Upcoming) To enable database backups, provide your database address and S3 credentials.
 
 ## Setup
 
-`5N Dashboard` is ideally deployed into the same cluster where your validator runs.
+`5N Dashboard` ss ideally deployed in the same cluster where your validator runs.
 
-### Create an OIDC application for the UI Frontend
+### Configure an OIDC application for the 5N Dashboard UI.
 
-Follow the same steps for setting up a [auth0](https://docs.test.sync.global/validator_operator/validator_helm.html#configuring-an-auth0-tenant) or an [External OIDC Provider](https://docs.test.sync.global/validator_operator/validator_helm.html#oidc-provider-requirements). Specifically, create a new application similar to the wallet/cns and call it `5N Dashboard UI`. Once this has been created, take note of your app URL, its client id and audience.
+Follow the steps for setting up either an [auth0](https://docs.test.sync.global/validator_operator/validator_helm.html#configuring-an-auth0-tenant) or an [External OIDC Provider](https://docs.test.sync.global/validator_operator/validator_helm.html#oidc-provider-requirements). Specifically, create a new application similar to the wallet/cns and call it `5N Dashboard UI`. Once this has been created, take note of your app URL, its client id and audience.
 
 Example, with Auth0, the value looks like this
 
@@ -21,11 +21,11 @@ Example, with Auth0, the value looks like this
 - Client id: `<some-id>@clients`
 - Audience: the audience of your app
 
-Usually, you can follow exactly the same setup and URL configuration you use for the wallet ui app with different client id (or different audience if you had configure a separate audience).
+You can usually reuse the same setup and URL configuration as your wallet UI app, but specify a different client ID or audience if needed.
 
-### Deploy with the helm chart
+### Install the software into your Kubernetes cluster using our public Helm chart.
 
-Once having all the above value, use helm to deploy the latest version.
+Once you have the above values, deploy the latest version using Helm:
 
 ```
 helm upgrade --install 5n-dashboard \
@@ -35,13 +35,13 @@ helm upgrade --install 5n-dashboard \
     --set auth.url=<auth-app-url> --set auth.clientId=<client-id> --set auth.audience=<audience>
 ```
 
-To get the latest version, vist [release note](/5n-dashboard/release/)
+To find the latest version, visit the [release note](/5n-dashboard/release/)
 
-### Ingress
+### Expose the deployment via an ingress.
 
-We struct the app in a way there is just a single deployment to handle  both of UI and backend, therefore simplify routing layer.
+The dashboard uses a single deployment for both UI and backend to simplify routing.
 
-Simply create an ingress that route the port 8080 of the 5n-dashboard-app service. This is an example ingress with ingress nginx.
+Here’s an example NGINX ingress:
 
 ```
 apiVersion: networking.k8s.io/v1
@@ -106,4 +106,4 @@ spec:
 
 ### Access the dashboard
 
-After installing the dashboard, you can now login to it with the user that have primary party is the same as your validator operator party. Usually, this will be the same user that can access your validator wallet.
+Once deployed, log in using a user whose primary party matches your validator operator party. This is typically the same user you use to access your validator wallet.
