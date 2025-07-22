@@ -108,7 +108,7 @@ spec:
 
 Once deployed, log in using a user whose primary party matches your validator operator party. This is typically the same user you use to access your validator wallet.
 
-### Upgrade to a new version
+## Upgrade to a new version
 
 To upgrade to a new version simply re-run the helm command with the right version
 
