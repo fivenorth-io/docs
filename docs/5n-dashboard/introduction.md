@@ -1,27 +1,27 @@
 # Overview
 
-Welcome to the `5N Dashboard`, a high-performance and intuitive application designed to support Canton validator operations. The app simplifies the management of DAR files, users and parties on the validator. It is designed to be lean, simple, and fast, easily deployable as a single binary written in Golang, with a low memory footprint. This single binary includes both of the backend and the frontend.
+Welcome to the `5N Dashboard`, a high-performance and intuitive application designed to support Canton validator operations. The app simplifies the management of DAR files, users and parties on the validator. It is designed to be lean, simple, and fast, easily deployable as a single binary written in Golang, with a low memory footprint. This single binary includes both the backend and the frontend.
 
 Beyond DAR file management, the Dashboard provides comprehensive support for managing parties and users directly on your Canton validator. You can effortlessly onboard new participants, manage their permissions, and ensure a secure and efficient operational environment.
 
-One of the standout features is the interactive shell. It allows executing shell scripts directly within the Kubernetes cluster, with the output streamed in real-time to the browser. This capability provides unparalleled control and visibility, making debugging, deployment, and operational tasks significantly more efficient. All the common credential are auto populated and set in the environment variable for convenience.
+One of the standout features is the interactive shell. It allows executing shell scripts directly within the Kubernetes cluster, with the output streamed in real-time to the browser. This capability provides unparalleled control and visibility, making debugging, deployment, and operational tasks significantly more efficient. All common credentials are auto‑populated and set as environment variables for convenience.
 
-`5N Dashboard` was designed to be stateless. Can operate along with en existing cluster, added into a fresh new system, or to an already deployed standalone validator. It doesn't want to control and dictacte how you deploy your Canton validator. As long as we can connect to Ledger API and Ledger Admin API, `5N Dashboard` works as expected.
+The `5N Dashboard` is designed to be stateless. It can be deployed alongside an existing cluster, added to a fresh new system, or integrated with an already deployed standalone validator. It doesn’t try to control or dictate how you deploy your Canton validator. As long as it can connect to the Ledger API and the Ledger Admin API, the `5N Dashboard` works as expected.
 
-`5N Dashboard` goal is to help provide developers and administrators with the tools needed to effectively deploy, monitor, maintain and backup both of the node and their Canton-based applications.
+The goal of the `5N Dashboard` is to give developers and administrators the tools needed to effectively deploy, monitor, maintain, and back up both the node and their Canton‑based applications.
 
 We welcome any feedback, email us at nodesupport@fivenorth.io
 
 ## Features
 
-- DAR file managemen with multi uploads and versions.
-- Manage User&amp; Party.
+- DAR file management with multi‑file uploads and version control.
+- Manage users and parties.
 - Interactive Shell Execution/History
-- Backup Identitities Dump
+- Backup identities dump
 
 ## Upcoming 
 
-- Auto Backup Node Identities and Database to cloud: support S3, GCS, and Wasabi and CloudFlare R2
+- Auto‑backup node identities and databases to the cloud (supporting S3, GCS, Wasabi, and Cloudflare R2).
 
 ## Demo Videos
 
