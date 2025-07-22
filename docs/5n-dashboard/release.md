@@ -4,5 +4,5 @@
 ## v0.5.0
 
 - Initial public release.
-- [Helm chart](https://github.com/fivenorth-io/5n-dashboard/pkgs/container/helm%2F5n-dashboard-app/450694762?tag=0.3.1)
-- [Docker image](https://github.com/fivenorth-io/5n-dashboard/pkgs/container/5n-dashboard/450694915?tag=v0.3.1)
+- [Helm chart](https://github.com/orgs/fivenorth-io/packages/container/helm%2F5n-dashboard/467197912?tag=0.5.0)
+- [Docker image](https://github.com/orgs/fivenorth-io/packages/container/docker%2F5n-dashboard/467197973?tag=v0.5.0)
