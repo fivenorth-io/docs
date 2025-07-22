@@ -107,3 +107,15 @@ spec:
 ### Access the dashboard
 
 Once deployed, log in using a user whose primary party matches your validator operator party. This is typically the same user you use to access your validator wallet.
+
+### Upgrade to a new version
+
+To upgrade to a new version simply re-run the helm command with the right version
+
+```
+helm upgrade --install 5n-dashboard \
+    oci://ghcr.io/fivenorth-io/helm/5n-dashboard \
+    -n <namespace> \
+    --version <new-version> \
+    --set auth.url=<auth-app-url> --set auth.clientId=<client-id> --set auth.audience=<audience>
+```
