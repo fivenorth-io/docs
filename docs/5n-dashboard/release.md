@@ -1,4 +1,4 @@
-# Release Note
+# Release Notes
 
 ## v0.5.1
 
