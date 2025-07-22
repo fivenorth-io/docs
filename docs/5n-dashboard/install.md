@@ -17,7 +17,7 @@ Follow the steps for setting up either an [auth0](https://docs.test.sync.global/
 
 Example, with Auth0, the value looks like this
 
-- OIDC Authentication App URL: `https://<tenand-id>.<region>.auth0.com`. For other system this will usually 
+- OIDC Authentication App URL: `https://<tenand-id>.<region>.auth0.com`.
 - Client id: `<some-id>@clients`
 - Audience: the audience of your app
 
