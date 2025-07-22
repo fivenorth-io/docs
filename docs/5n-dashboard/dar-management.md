@@ -1,10 +1,14 @@
 # DAR files management
+From the Home or DARs page:
 
-- From the home screen or the DARs page of the dashboard. Click "Upload DAR files". Select one ore many DAR files. You can also keep adding DAR file into the staging upload area by click the button again and select another file
-- You can also just drag and drop DAR files into the uploading area
-- The files will then be automatically uploaded into the staging area
-- You can enter a custom description for any DAR.
-- Then click "Commit packages" to actually send these DAR to participant and vet them.
+
+1. Click Upload DAR files.
+2. Select one or multiple DAR files.
+  - To stage additional files, click the button again and select more files.
+3. Alternatively, drag and drop DAR files into the upload staging area.
+4. Files are automatically added to the staging area.
+5. (Optional) Enter a custom description for each DAR.
+6. Click Commit packages to send the staged DARs to participants for vetting.
 
 ### Demo
 
