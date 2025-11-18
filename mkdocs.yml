@@ -88,6 +88,7 @@ nav:
   - 5N Infra:
     - index.md
     - Hosted Node: hosted-node/hosted-node-access.md
+    - Sandbox: sandbox/sandbox-access.md
     - Sponsor:
       - IP Restriction: sponsored-node/check-ip-allow-status.md
       - Network Param: sponsored-node/network-parameters.md
