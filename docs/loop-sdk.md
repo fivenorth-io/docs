@@ -52,9 +52,12 @@ Call `loop.init()` once when your application loads:
 loop.init({
     appName: 'My Awesome dApp',
     network: 'local', // or 'devnet', 'mainnet'
+    options: {
+        openMode: 'popup', // or 'tab'
+        redirectUrl: 'https://mydapp.com/after-connect', // optional
+    },
     onAccept: (provider) => {
         console.log('Connected!', provider);
-        // You can now use the provider to interact with the wallet
     },
     onReject: () => {
         console.log('Connection rejected by user.');
@@ -71,6 +74,13 @@ loop.init({
 | `onAccept(provider)` | Called when the user approves connection |
 | `onReject()` | Called when the user rejects connection |
 
+### Options
+
+| Field | Description |
+|-------|-------------|
+| `openMode` | `'popup'` (default) or `'tab'` |
+| `redirectUrl` | Optional URL your user will return to after connecting |
+
 ---
 
 ## 2. Connect to the Wallet
@@ -80,6 +90,8 @@ To start the connection:
 ```javascript
 loop.connect();
 ```
+
+`redirectUrl` and `openMode` are read from the `options` in `init()`.
 
 This opens a QR modal for the user to scan with their Loop wallet.
 
@@ -180,11 +192,12 @@ You call `loop.init()` once your app loads:
 loop.init({
     appName: 'My Test dApp',
     network: 'devnet',
-    
-    // Optional: override wallet/backend URLS for local/dev builds
+    options: {
+        openMode: 'popup',
+        redirectUrl: 'https://mydapp.com/connected',
+    },
     walletUrl,
     apiUrl,
-
     onAccept: (provider) => setProvider(provider),
     onReject: () => console.log('User rejected connection'),
 });
