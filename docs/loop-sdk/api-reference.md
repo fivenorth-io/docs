@@ -1,4 +1,3 @@
-
 # API Reference
 
 This section lists all publicly available SDK APIs to dApps.
@@ -53,6 +52,17 @@ This will:
 ### `loop.disconnect()`
 
 Clears cached session (localStorage) and resets internal state.
+
+---
+
+### `loop.verifySession()`
+
+Verifies the current cached session with the Loop backend and returns the latest account information.
+
+```ts
+const session = await loop.verifySession();
+// session is either null or an object with the current account info
+```
 
 ---
 
