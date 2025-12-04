@@ -158,6 +158,29 @@ try {
 
 ---
 
+### Transfer (built-in helper)
+
+```javascript
+// Fast path: uses your wallet connection to build and run a transfer
+await loop.wallet.transfer(
+  'receiver::fingerprint',
+  '5', // amount as string or number
+  {
+    // Optional overrides. Defaults to Amulet/DSO if omitted.
+    instrument_admin: 'issuer::fingerprint', // optional
+    instrument_id: 'LOOP',                   // optional
+    requestedAt: new Date().toISOString(),   // optional
+    executeBefore: new Date(Date.now() + 24*60*60*1000).toISOString(), // optional
+  },
+);
+```
+
+Notes:
+- You must have spendable holdings for the specified instrument (admin + id). If left blank, the SDK defaults to the native token.
+- The helper handles: fetching holdings, building the transfer factory payload, and submitting via Wallet Connect.
+
+---
+
 ## How the Loop Connect Flow Works
 
 This section explains the code path from your dApp to the Loop wallet and back.
