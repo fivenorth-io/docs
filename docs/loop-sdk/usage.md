@@ -166,10 +166,11 @@ await loop.wallet.transfer(
   'receiver::fingerprint',
   '5', // amount as string or number
   {
-    // Optional overrides. Defaults to Amulet/DSO if omitted.
-    instrument_admin: 'issuer::fingerprint', // optional
-    instrument_id: 'LOOP',                   // optional
-    requestedAt: new Date().toISOString(),   // optional
+    instrument_id: 'Amulet',                 // defaults to Amulet if omitted
+    instrument_admin: 'issuer::fingerprint', // optional override; defaults to DSO/Amulet
+  },
+  {
+    requestedAt: new Date().toISOString(),   // optional; auto-filled if omitted
     executeBefore: new Date(Date.now() + 24*60*60*1000).toISOString(), // optional
   },
 );
