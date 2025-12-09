@@ -55,6 +55,7 @@ theme:
 plugins:
   - search
   - glightbox
+  - monorepo
 
 markdown_extensions:
   - attr_list
@@ -101,8 +102,4 @@ nav:
       - User management: 5n-dashboard/user-management.md
       - Party Management: 5n-dashboard/party-management.md
       - Shell: 5n-dashboard/shell.md
-  - Loop SDK:
-      - Overview: loop-sdk/overview.md
-      - Usage guide: loop-sdk/usage.md
-      - API reference: loop-sdk/api-reference.md
-      - Release: loop-sdk/release.md
+  - Loop SDK: '!include ../loop-sdk/docs/mkdocs.yml'
