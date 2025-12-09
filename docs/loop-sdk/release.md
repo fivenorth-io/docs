@@ -1,5 +1,13 @@
 # Loop SDK – Release Notes
 
+## Release Resources
+
+- **NPM Package:** [`@fivenorth/loop-sdk`](https://www.npmjs.com/package/@fivenorth/loop-sdk)
+
+- **Full Changelog:** [`CHANGELOG`](https://www.github.com/fivenorth-io/loop-sdk/blob/main/CHANGELOG.md)
+
+The release notes below highlight only the major updates. Refer to the links above for the complete changelog.
+
 ## v0.6.0
 - Added `loop.wallet.transfer` helper that builds and submits transfers (optional instrument admin/id overrides).
 - Demo updated with transfer UI fields.
