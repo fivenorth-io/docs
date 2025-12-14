@@ -12,8 +12,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout docs repo
         uses: actions/checkout@v4
+
+      - name: Checkout loop-sdk repo
+        uses: actions/checkout@v4
+        with:
+          repository: fivenorth-io/loop-sdk
+          ref: main
+          path: loop-sdk
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
