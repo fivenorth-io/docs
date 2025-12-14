@@ -102,4 +102,4 @@ nav:
       - User management: 5n-dashboard/user-management.md
       - Party Management: 5n-dashboard/party-management.md
       - Shell: 5n-dashboard/shell.md
-  - Loop SDK: '!include ../loop-sdk/docs/mkdocs.yml'
+  - Loop SDK: '!include ./loop-sdk/docs/mkdocs.yml'
