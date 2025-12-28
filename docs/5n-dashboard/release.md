@@ -1,5 +1,15 @@
 # Release Notes
 
+## v0.7.0
+
+- Support "Execute As" user right
+- [Helm chart](https://github.com/fivenorth-io/5n-dashboard/pkgs/container/helm%2F5n-dashboard/624576282?tag=0.7.0)
+- [Docker image](https://github.com/fivenorth-io/5n-dashboard/pkgs/container/docker%2F5n-dashboard/624576883?tag=v0.7.0)
+
+## v0.6.0
+
+- Allow access dashboard if an users can Act As validator operator party, not just require primary party
+
 ## v0.5.4
 
 - Fix bug running on Keycloak
