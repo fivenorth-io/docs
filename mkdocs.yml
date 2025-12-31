@@ -103,3 +103,6 @@ nav:
       - Party Management: 5n-dashboard/party-management.md
       - Shell: 5n-dashboard/shell.md
   - Loop SDK: '!include ./loop-sdk/docs/mkdocs.yml'
+  - 5N Time Machine:
+    - Overview: 5n-timemachine/introduction.md
+    - Installation: 5n-timemachine/install.md
