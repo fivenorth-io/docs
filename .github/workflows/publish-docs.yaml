@@ -23,6 +23,13 @@ jobs:
           ref: main
           path: loop-sdk
 
+      - name: Checkout id-sdk repo
+        uses: actions/checkout@v4
+        with:
+          repository: fivenorth-io/id-sdk
+          ref: main
+          path: id-sdk
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
