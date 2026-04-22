@@ -10,6 +10,29 @@
    Must stay in sync with docs/javascripts/fn-theme.js. #}
 {% block extrahead %}
   {{ super() }}
+
+  {# ── Social / Open Graph meta ───────────────────────────────── #}
+  {% set _title = (page.title ~ ' — ' if page and page.title else '') ~ config.site_name %}
+  {% set _desc  = page.meta.description if page and page.meta.description else config.site_description %}
+  {% set _url   = page.canonical_url if page and page.canonical_url else config.site_url %}
+  {% set _img   = config.site_url ~ 'assets/social.png' %}
+
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="{{ config.site_name }}">
+  <meta property="og:title"       content="{{ _title }}">
+  <meta property="og:description" content="{{ _desc }}">
+  <meta property="og:url"         content="{{ _url }}">
+  <meta property="og:image"       content="{{ _img }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="{{ config.site_name }}">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="{{ _title }}">
+  <meta name="twitter:description" content="{{ _desc }}">
+  <meta name="twitter:image"       content="{{ _img }}">
+  <meta name="twitter:image:alt"   content="{{ config.site_name }}">
+
   <script>
     (function () {
       try {

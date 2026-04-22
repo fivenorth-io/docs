@@ -67,7 +67,7 @@ body {
 .fn-header__brand {
   display: flex;
   justify-content: center;
-  padding: 16px 0 12px;
+  padding: 12px 0;
   background-color: var(--fn-surface);
   border-bottom: 1px solid var(--fn-line);
   flex: 0 0 auto;
@@ -150,15 +150,7 @@ body {
   vertical-align: middle;
 }
 
-.fn-header__title-wrap {
-  display: flex;
-  align-items: center;
-  height: 30px;
-  padding-left: 24px;
-  border-left: 1px solid var(--fn-line-divider);
-}
 @media (max-width: 767px) {
-  .fn-header__title-wrap { display: none; }
   .fn-header__brand {
     position: sticky;
     top: 0;
@@ -167,12 +159,6 @@ body {
   .fn-header__sticky {
     display: none;
   }
-}
-
-.fn-header__title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--fn-fg);
 }
 
 .fn-header__right {
@@ -207,14 +193,6 @@ body {
   color: #f1f5f9 !important;
   font-size: 0.75rem !important;
   font-weight: 500;
-}
-
-/* Light mode: invert to dark-text-on-light */
-[data-md-color-scheme="default"] .md-dialog {
-  background-color: #1a1a24 !important;
-}
-[data-md-color-scheme="default"] .md-dialog__inner {
-  color: #f8fafc !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -755,8 +733,6 @@ label.md-search__overlay {
   outline-offset: 2px;
 }
 
-/* ── Old single-button styles removed — see fn-theme-pill above ── */
-
 /* ── Hamburger button ──────────────────────────────────────── */
 .fn-hamburger {
   position: relative;
@@ -1062,7 +1038,8 @@ label.md-search__overlay {
   font-size: 54px;
   line-height: 120%;
   max-width: 700px;
-  padding-bottom: 18px;
+  padding-bottom: 0;
+  margin: 0;
   font-family: var(--fn-font-display);
 }
 
@@ -1071,7 +1048,7 @@ label.md-search__overlay {
 }
 
 @media (max-width: 639px) {
-  .fn-hero__title { font-size: 32px; line-height: 40px; }
+  .fn-hero__title { font-size: 32px; line-height: 40px; margin-top: 20px; }
 }
 
 .fn-hero__subtitle {

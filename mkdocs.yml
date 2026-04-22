@@ -1,5 +1,7 @@
 site_name: Operating Documents
 site_url: https://www.fivenorthgroup.com/
+site_description: "Foundational infrastructure documentation for decentralized financial networks — Five North Group."
+site_author: "Five North Group"
 
 watch:
   - overrides
