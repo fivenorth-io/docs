@@ -1,9 +1,22 @@
 site_name: Operating Documents
 site_url: https://www.fivenorthgroup.com/
+site_description: "Foundational infrastructure documentation for decentralized financial networks — Five North Group."
+site_author: "Five North Group"
+
+watch:
+  - overrides
+
 extra_css:
+  - stylesheets/fn-tokens.css
+  - stylesheets/fn-layout.css
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/fn-theme.js
+
 theme:
   name: material
+  custom_dir: overrides
   font:
     text: Inter Tight
     code: Red Hat Mono
@@ -32,25 +45,10 @@ theme:
     - search.suggest
     - toc.follow
 
-  palette:
-    # Dark Mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: slate
-      toggle:
-        icon: material/weather-sunny
-        name: Dark mode
-      primary: black
-      accent: black
-
-    # Light Mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: default
-      toggle:
-        icon: material/weather-night
-        name: Light mode
-      primary: black
-      accent: black
-
+  # Theme switching is handled by fn-theme.js (docs/javascripts/fn-theme.js).
+  # We deliberately DO NOT declare a `palette:` here so Material doesn't
+  # auto-apply a scheme on load or render its own palette switcher — that
+  # would fight the fivenorth theme toggle.
 
 plugins:
   - search
@@ -86,8 +84,9 @@ markdown_extensions:
 copyright: Copyright &copy; 2025 Five North Group
 
 nav:
+  - Home: index.md
   - 5N Infra:
-    - index.md
+    - 5n-infra/index.md
     - Hosted Node: hosted-node/hosted-node-access.md
     - Sandbox: sandbox/sandbox-access.md
     - Sponsor:

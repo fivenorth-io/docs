@@ -1,0 +1,62 @@
+{#
+  Fivenorth custom footer.
+  Ported from 5n-fivenorth-io/src/sections/Footer.tsx.
+#}
+{% set fn_footer_links = [
+  { 'label': 'About',   'url': 'https://www.fivenorthdigital.com/' },
+  { 'label': 'Contact', 'url': 'https://www.fivenorthdigital.com/for-developers' }
+] %}
+
+<footer class="fn-footer fn-t" role="contentinfo">
+  <div class="fn-footer__inner">
+    <div class="fn-footer__top">
+      <a href="{{ '' | url }}" class="fn-logo-link" aria-label="Five North — home">
+        <div class="fn-logo-img fn-logo fn-icon"
+             style="background-image: url({{ 'assets/fn/footer-logo.svg' | url }});"></div>
+      </a>
+
+      <div class="fn-footer__links">
+        {% for link in fn_footer_links %}
+          <a href="{{ link.url }}" class="fn-footer__link fn-t"
+             target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="fn-footer__bottom fn-t">
+      <div class="fn-footer__copyright fn-t">
+        Copyright © {{ build_date_utc.year if build_date_utc else '2025' }} Five North Group
+      </div>
+
+      {# ── Theme pill: System / Light / Dark #}
+      <div class="fn-theme-pill" role="group" aria-label="Color theme">
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="system" aria-label="System theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </button>
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="light" aria-label="Light theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="dark" aria-label="Dark theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>

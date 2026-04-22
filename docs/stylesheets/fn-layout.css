@@ -1,0 +1,1428 @@
+/* ═══════════════════════════════════════════════════════════════
+   FIVENORTH LAYOUT CSS
+   Semantic classes for Header, Footer, TabNav, Hero, Products.
+   Replaces Tailwind utility classes used in the original React code.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL SURFACE
+   Unify html/body and Material containers to fn-surface so there is
+   no "seam" between our custom header and Material's content areas.
+   ═══════════════════════════════════════════════════════════════ */
+html,
+body {
+  background-color: var(--fn-surface);
+  color: var(--fn-fg);
+  font-family: var(--fn-font-sans);
+  transition:
+    background-color var(--fn-duration-base) var(--fn-ease),
+    color var(--fn-duration-base) var(--fn-ease);
+}
+
+.md-container,
+.md-main,
+.md-main__inner,
+.md-content,
+.md-sidebar,
+.md-sidebar__scrollwrap {
+  background-color: var(--fn-surface) !important;
+  color: var(--fn-fg);
+}
+
+/* Material sidebars use `position: sticky; top: 2.4rem` by default (tuned
+   to Material's own header). Our sticky action bar is ~54px tall, so we
+   push the sidebar top offset down to match and prevent overlap when the
+   action bar is stuck. */
+.md-sidebar {
+  top: 56px !important;
+}
+@media (max-width: 959px) {
+  .md-sidebar { top: 0 !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HIDE MATERIAL DEFAULT HEADER / TABS / FOOTER
+   We render our own header/footer below.
+   ═══════════════════════════════════════════════════════════════ */
+.md-header,
+.md-tabs,
+.md-footer {
+  display: none !important;
+}
+
+/* Adjust Material main container to account for our sticky header */
+.md-container {
+  padding-top: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════ */
+/* Brand + sticky are now two separate direct children of <body>. Body is
+   `display: flex; flex-direction: column; min-height: 100%` (Material's
+   default), and since <body> spans the entire document height, a sticky
+   element inside body can bind to the viewport for the full scroll. */
+
+/* ── Brand bar (NOT sticky) ───────────────────────────────────── */
+.fn-header__brand {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+  background-color: var(--fn-surface);
+  border-bottom: 1px solid var(--fn-line);
+  flex: 0 0 auto;
+  align-self: stretch;
+}
+
+[data-md-color-scheme="slate"] .fn-header__brand {
+  border-bottom-color: #2e323c;
+}
+
+.fn-header__brand-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: var(--fn-max-w);
+  width: 100%;
+  min-width: 0;
+  padding: 0 20px;
+}
+
+/* ── Sticky action bar (tabs + search + theme + hamburger) ───── */
+.fn-header__sticky {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 10px 0;
+  background-color: var(--fn-surface-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--fn-duration-fast) var(--fn-ease);
+  /* Critical for sticky-inside-flex-column: ensure this bar does NOT
+     stretch vertically — flex item would otherwise be stretched and
+     sticky behavior becomes unpredictable. */
+  flex: 0 0 auto;
+  align-self: stretch;
+}
+
+/* Subtle divider + shadow becomes visible only when actually stuck */
+.fn-header__sticky.is-stuck {
+  border-bottom-color: var(--fn-line-muted);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+[data-md-color-scheme="slate"] .fn-header__sticky.is-stuck {
+  box-shadow: none;
+}
+
+.fn-header__sticky-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--fn-max-w);
+  width: 100%;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+/* Mobile nav drawer also needs flex-item sizing */
+.fn-mobile-nav {
+  flex: 0 0 auto;
+  align-self: stretch;
+}
+
+.fn-logo-link {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.fn-logo-img {
+  display: block;
+  height: 32px;
+  width: 132px;
+  max-width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+  .fn-header__brand {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .fn-header__sticky {
+    display: none;
+  }
+}
+
+.fn-header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Neutralize Material's global click-blocker overlay. We render search as a
+   header dropdown (not fullscreen), so this overlay should never catch clicks. */
+.md-overlay {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* ── Clipboard / share toast notification ──────────────────────
+   Material uses inverted --md-default-fg/bg-color for .md-dialog, which
+   clashes with our custom tokens. Override with explicit high-contrast
+   values for both light and dark modes so the "Copied" message is always
+   readable. */
+.md-dialog {
+  background-color: #1e1e24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 8px !important;
+  padding: 8px 14px !important;
+}
+
+.md-dialog__inner {
+  color: #f1f5f9 !important;
+  font-size: 0.75rem !important;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH WRAP
+   .fn-search-wrap is a direct body-level sibling of .fn-header__sticky
+   (no backdrop-filter ancestor → position:fixed is viewport-relative).
+
+   Desktop: fixed at top-right of sticky bar.
+   Mobile:  hidden off-screen (NOT display:none so Material can init);
+            slides in full-width when body.fn-mobile-search-active.
+   ═══════════════════════════════════════════════════════════════ */
+.fn-search-wrap {
+  position: fixed;
+  top: 0;
+  right: max(20px, calc((100vw - var(--fn-max-w)) / 2 + 20px));
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  /* NOT display:none — keep in DOM so Material initialises the search worker.
+     Pushed off-screen to the right so it's invisible and non-interactive. */
+  .fn-search-wrap {
+    right: -120vw;
+    pointer-events: none;
+    transition: right 0s;   /* snap, no slide glitch on desktop */
+  }
+
+  /* ── Active: full-width search bar ── */
+  body.fn-mobile-search-active .fn-search-wrap {
+    right: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    height: 56px !important;
+    pointer-events: auto !important;
+    z-index: 300 !important;
+    background: var(--fn-surface) !important;
+    border-bottom: 1px solid var(--fn-line) !important;
+    padding: 0 12px 0 16px !important;
+    gap: 8px !important;
+  }
+
+  /* Expand the form to fill the bar */
+  body.fn-mobile-search-active .fn-search-wrap .md-search__form {
+    flex: 1 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    max-width: none !important;
+    font-size: 16px !important; /* prevents iOS auto-zoom on focus */
+    background: var(--fn-surface-inset) !important;
+    border: 1.5px solid var(--fn-line) !important;
+    border-radius: var(--fn-radius-md) !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+  }
+
+  body.fn-mobile-search-active .fn-search-wrap .md-search__form:focus-within {
+    width: auto !important;
+    border-color: var(--fn-accent) !important;
+  }
+
+  body.fn-mobile-search-active .fn-search-wrap .md-search__input {
+    font-size: 16px !important;
+    color: var(--fn-fg) !important;
+    background: transparent !important;
+    caret-color: var(--fn-accent) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 12px !important;
+    text-align: left !important;
+  }
+
+  /* Hide Material's icon label (has 2 SVGs that render weirdly on mobile) */
+  body.fn-mobile-search-active .fn-search-wrap .md-search__icon[for="__search"] {
+    display: none !important;
+  }
+
+  /* Hide all buttons inside the input (share + reset) — close is outside */
+  body.fn-mobile-search-active .fn-search-wrap .md-search__options {
+    display: none !important;
+  }
+
+  /* Custom search icon injected by JS — flex item inside the form row */
+  .fn-mobile-search-icon {
+    display: none;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-left: 12px;
+    color: var(--fn-fg-muted);
+    pointer-events: none;
+  }
+  body.fn-mobile-search-active .fn-mobile-search-icon {
+    display: flex;
+  }
+
+  /* Style the close (X) button */
+  .fn-mobile-search-close {
+    flex-shrink: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: var(--fn-radius-md) !important;
+    background: transparent !important;
+    color: var(--fn-fg-secondary) !important;
+    border: none !important;
+    margin-left: 0 !important;
+  }
+  .fn-mobile-search-close:hover { color: var(--fn-fg) !important; }
+
+  /* Results dropdown — force visible + full-width below the 60px bar.
+     Use position:fixed (not absolute) so the output escapes fn-search-wrap's
+     stacking context and sits in the root stacking context at z-index 9000,
+     above everything regardless of any parent overflow or stacking issues. */
+  body.fn-mobile-search-active .fn-search-wrap .md-search__output {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: calc(100dvh - 60px) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: none !important;
+    background: var(--fn-surface-raised) !important;
+    border-top: 1px solid var(--fn-line) !important;
+    overflow-y: auto !important;
+    z-index: 9000 !important;
+  }
+
+  body.fn-mobile-search-active .fn-search-wrap .md-search__scrollwrap {
+    height: auto !important;
+    max-height: calc(100dvh - 60px) !important;
+    overflow-y: auto !important;
+  }
+
+  /* Ensure result items are clearly visible on mobile */
+  body.fn-mobile-search-active .fn-search-wrap .md-search-result {
+    background: transparent !important;
+  }
+  body.fn-mobile-search-active .fn-search-wrap .md-search-result__meta {
+    color: var(--fn-fg-muted) !important;
+    background: var(--fn-surface-raised) !important;
+  }
+  body.fn-mobile-search-active .fn-search-wrap .md-search-result__item {
+    background: transparent !important;
+  }
+  body.fn-mobile-search-active .fn-search-wrap .md-search-result__link {
+    color: var(--fn-fg) !important;
+  }
+  body.fn-mobile-search-active .fn-search-wrap .md-search-result__title {
+    color: var(--fn-fg) !important;
+  }
+  body.fn-mobile-search-active .fn-search-wrap .md-search-result__teaser {
+    color: var(--fn-fg-muted) !important;
+  }
+
+  /* Base styles for the close button (overrides applied above in active state) */
+  .fn-mobile-search-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .fn-mobile-search-close svg { pointer-events: none; }
+}
+
+/* Contain Material's .md-search inside our wrapper. Material itself has
+   rules that float the form to the right on small screens; we neutralize
+   those because our wrapper sits inside a flex row. */
+.fn-search-wrap .md-search {
+  position: static !important;
+  padding: 0 !important;
+}
+
+/* Kill ALL of Material's mobile/desktop overrides on .md-search__inner
+   so it renders inline inside our flex wrapper.
+   Material applies: position:fixed; left:100%; opacity:0; pointer-events:none
+   on small screens — we override everything with !important. */
+.fn-search-wrap .md-search__inner {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  transform: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.fn-search-wrap .md-search__form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  width: 220px;
+  padding: 0 12px 0 32px;
+  border-radius: var(--fn-radius-md);
+  background: var(--fn-surface-inset);
+  border: 1px solid var(--fn-line);
+  box-shadow: none;
+  transition:
+    width 0.2s cubic-bezier(0.1, 0.7, 0.1, 1),
+    background-color var(--fn-duration-fast) var(--fn-ease),
+    border-color var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-search-wrap .md-search__form:hover {
+  border-color: var(--fn-line-divider);
+}
+
+.fn-search-wrap .md-search__form:focus-within {
+  width: 360px;
+  border-color: var(--fn-accent);
+}
+
+/* Search input */
+.fn-search-wrap .md-search__input {
+  position: static;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  color: var(--fn-fg);
+  font-size: 12px;
+  font-family: inherit;
+  border: 0;
+  outline: none;
+  text-align: left !important;
+}
+
+.fn-search-wrap .md-search__input::placeholder {
+  color: var(--fn-fg-muted);
+  opacity: 1;
+}
+
+/* Search icon (magnifier) on the left */
+.fn-search-wrap .md-search__icon[for="__search"] {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--fn-fg-muted);
+  cursor: text;
+}
+
+.fn-search-wrap .md-search__icon[for="__search"] svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Hide the "previous" (back arrow) icon that Material swaps in on mobile */
+.fn-search-wrap .md-search__icon[for="__search"] svg:nth-child(2) {
+  display: none;
+}
+
+/* ⌘K / Ctrl+K badge inside the search input */
+.fn-search-kbd {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  pointer-events: none;
+  margin-right: 2px;
+}
+
+.fn-search-kbd kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid var(--fn-line-divider);
+  background: var(--fn-surface-raised);
+  color: var(--fn-fg-muted);
+  font-size: 10px;
+  font-family: inherit;
+  line-height: 1;
+  font-style: normal;
+}
+
+/* Hide badge when input has focus (user is typing) */
+.fn-search-wrap .md-search__form:focus-within .fn-search-kbd {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .fn-search-kbd { display: none !important; }
+}
+
+/* Options bar (share / reset) — keep reset button accessible on the right */
+.fn-search-wrap .md-search__options {
+  position: absolute;
+  right: 4px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.fn-search-wrap .md-search__options > .md-icon {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  color: var(--fn-fg-muted);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-search-wrap [data-md-toggle="search"]:checked ~ .md-header .md-search__options > .md-icon,
+.fn-search-wrap .md-search__form:focus-within .md-search__options > .md-icon {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The fullscreen overlay that Material dims the page with — hide entirely.
+   We use a dropdown (.md-search__output) instead of the fullscreen search
+   UX. Use !important because Material has multiple media-query rules that
+   re-assert position/size on this element. If it leaks visible it becomes
+   an invisible click-trap covering the theme button and surrounding area. */
+.fn-search-wrap .md-search__overlay,
+.md-search__overlay,
+label.md-search__overlay {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Results dropdown — float below the input as a dropdown, not fullscreen.
+   display:block !important prevents Material's mobile CSS from hiding it
+   (Material uses display:none on small screens via its own media queries).
+   We control visibility via opacity/pointer-events only. */
+.fn-search-wrap .md-search__output {
+  display: block !important;
+  visibility: visible !important;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: min(520px, 90vw);
+  max-height: 70vh;
+  border-radius: var(--fn-radius-md);
+  background: var(--fn-surface-raised);
+  border: 1px solid var(--fn-line);
+  box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  z-index: 60;
+  /* Hidden by default — only via opacity, NOT display */
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition:
+    opacity var(--fn-duration-fast) var(--fn-ease),
+    transform var(--fn-duration-fast) var(--fn-ease);
+}
+
+/* Shown when: Material's search toggle is checked, OR the input has focus.
+   Material emits `#__search` (data-md-toggle="search") at body level,
+   which is a PRECEDING SIBLING of .fn-search-wrap, so `~` works here. Our
+   JS checks that same element on mobile open so Material's search JS also
+   activates result routing. */
+.fn-search-wrap:focus-within .md-search__output {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.fn-search-wrap .md-search__scrollwrap {
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: transparent;
+  width: 100%;
+}
+
+.fn-search-wrap .md-search-result {
+  background: transparent;
+  color: var(--fn-fg);
+}
+
+.fn-search-wrap .md-search-result__meta {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--fn-fg-muted);
+  background: transparent;
+  border-bottom: 1px solid var(--fn-line-muted);
+}
+
+.fn-search-wrap .md-search-result__list {
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+}
+
+.fn-search-wrap .md-search-result__item {
+  box-shadow: none;
+  border-bottom: 1px solid var(--fn-line-muted);
+}
+
+.fn-search-wrap .md-search-result__item:last-child {
+  border-bottom: none;
+}
+
+.fn-search-wrap .md-search-result__link {
+  padding: 12px 16px !important;
+  background: transparent;
+  color: var(--fn-fg);
+  transition: background-color var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-search-wrap .md-search-result__article {
+  overflow: hidden;
+}
+
+.fn-search-wrap .md-search-result__link:hover,
+.fn-search-wrap .md-search-result__link:focus,
+.fn-search-wrap .md-search-result__link[data-md-state="active"] {
+  background: var(--fn-surface-inset);
+}
+
+.fn-search-wrap .md-search-result__article--document .md-search-result__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fn-fg);
+  margin: 0;
+}
+
+.fn-search-wrap .md-search-result__teaser {
+  font-size: 12px;
+  color: var(--fn-fg-secondary);
+  margin-top: 4px;
+  max-height: none;
+}
+
+.fn-search-wrap .md-search-result mark {
+  color: var(--fn-accent);
+  background: transparent;
+  font-weight: 600;
+}
+
+/* Hide suggest div's default positioning quirks */
+.fn-search-wrap .md-search__suggest {
+  opacity: 0;
+}
+
+/* ── Theme toggle button ───────────────────────────────────── */
+/* ── Theme pill (System / Light / Dark) ──────────────────────
+   A capsule with 3 icon buttons. The active option gets a filled
+   background; others are ghost. Lives in the footer bottom bar. */
+.fn-theme-pill {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  background: var(--fn-surface-inset);
+  border: 1px solid var(--fn-line);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.fn-theme-pill__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--fn-fg-muted);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  line-height: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.fn-theme-pill__btn svg {
+  pointer-events: none;
+  display: block;
+}
+
+/* Active state */
+.fn-theme-pill__btn.is-active {
+  background: var(--fn-accent);
+  color: #fff;
+}
+
+/* Hover on inactive buttons */
+.fn-theme-pill__btn:not(.is-active):hover {
+  background: var(--fn-surface-raised);
+  color: var(--fn-fg);
+}
+
+.fn-theme-pill__btn:focus-visible {
+  outline: 2px solid var(--fn-accent);
+  outline-offset: 2px;
+}
+
+/* ── Hamburger button ──────────────────────────────────────── */
+.fn-hamburger {
+  position: relative;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--fn-radius-md);
+  border: 1px solid var(--fn-line);
+  background: var(--fn-surface-inset);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  z-index: 1;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-hamburger > span,
+.fn-hamburger > span::before,
+.fn-hamburger > span::after {
+  pointer-events: none;
+}
+
+/* Invisible hit-area expansion for hamburger */
+.fn-hamburger::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: calc(var(--fn-radius-md) + 8px);
+}
+
+.fn-hamburger:hover { border-color: var(--fn-accent); }
+.fn-hamburger:active { transform: scale(0.96); }
+.fn-hamburger:focus-visible {
+  outline: 2px solid var(--fn-accent);
+  outline-offset: 2px;
+}
+
+.fn-hamburger-line,
+.fn-hamburger-line::before,
+.fn-hamburger-line::after {
+  display: block;
+  width: 14px;
+  height: 1.5px;
+  background: var(--fn-fg-secondary);
+  border-radius: 1px;
+  transition:
+    transform var(--fn-duration-base) var(--fn-ease),
+    opacity var(--fn-duration-base) var(--fn-ease),
+    background-color var(--fn-duration-base) var(--fn-ease);
+}
+
+.fn-hamburger-line { position: relative; }
+
+.fn-hamburger-line::before,
+.fn-hamburger-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.fn-hamburger-line::before { transform: translateY(-4.5px); }
+.fn-hamburger-line::after  { transform: translateY(4.5px); }
+
+.fn-hamburger-line.fn-hamburger-open {
+  background: transparent;
+}
+
+.fn-hamburger-line.fn-hamburger-open::before {
+  transform: rotate(45deg);
+}
+
+.fn-hamburger-line.fn-hamburger-open::after {
+  transform: rotate(-45deg);
+}
+
+/* ── Mobile nav drawer ─────────────────────────────────────── */
+.fn-mobile-nav {
+  display: none;
+}
+
+/* Hamburger in brand bar — only on mobile, pushed right via margin-left: auto */
+.fn-hamburger--brand {
+  display: none;
+}
+
+/* Mobile controls group (search icon + hamburger) */
+.fn-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.fn-mobile-search-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--fn-radius-md);
+  border: 1px solid var(--fn-line);
+  background: var(--fn-surface-inset);
+  color: var(--fn-fg-secondary);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--fn-duration-fast) var(--fn-ease),
+              color var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-mobile-search-btn svg { pointer-events: none; }
+.fn-mobile-search-btn:hover { border-color: var(--fn-accent); color: var(--fn-accent); }
+.fn-mobile-search-btn.is-active { border-color: var(--fn-accent); color: var(--fn-accent); }
+
+/* Mobile controls and nav */
+@media (max-width: 767px) {
+  .fn-mobile-controls { display: flex; }
+  .fn-hamburger--brand { display: flex; }
+
+  /* Mobile nav drawer — fixed below the sticky brand bar */
+  .fn-mobile-nav {
+    position: fixed;
+    top: 61px; /* brand bar: 16px padding-top + 32px logo + 12px padding-bottom + 1px border */
+    left: 0;
+    right: 0;
+    z-index: 49;
+    background: var(--fn-surface);
+    border-bottom: 1px solid transparent;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows var(--fn-duration-base) var(--fn-ease-out),
+      border-color var(--fn-duration-fast) var(--fn-ease);
+    overflow: hidden;
+  }
+
+  .fn-mobile-nav-open {
+    grid-template-rows: 1fr;
+    border-bottom-color: var(--fn-line);
+  }
+
+  .fn-mobile-nav > div {
+    overflow: hidden;
+  }
+
+  .fn-mobile-nav__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 20px 20px;
+  }
+
+  .fn-mobile-nav__link {
+    display: flex;
+    align-items: center;
+    border-radius: var(--fn-radius-md);
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fn-fg);
+    text-decoration: none;
+    border: 1px solid transparent;
+    background: transparent;
+    transition:
+      color var(--fn-duration-fast) var(--fn-ease),
+      border-color var(--fn-duration-fast) var(--fn-ease);
+  }
+
+  .fn-mobile-nav__link:hover {
+    border-color: var(--fn-line);
+    color: var(--fn-fg-secondary);
+  }
+
+  .fn-mobile-nav__link.is-active {
+    border-color: var(--fn-line);
+    color: var(--fn-accent);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TAB NAV (pill row)
+   ═══════════════════════════════════════════════════════════════ */
+.fn-tabnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+@media (max-width: 767px) {
+  .fn-tabnav { display: none; }
+}
+
+.fn-tab {
+  align-content: center;
+  border-radius: 9999px;
+  padding: 8px 24px;
+  cursor: pointer;
+  color: var(--fn-fg);
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: transparent;
+  transition:
+    color var(--fn-duration-fast) var(--fn-ease),
+    border-color var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-tab:hover {
+  border-color: var(--fn-line);
+  color: var(--fn-fg-secondary);
+}
+
+.fn-tab.is-active {
+  border-color: var(--fn-line);
+  color: var(--fn-accent);
+}
+
+.fn-tab__label {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  width: max-content;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PAGE LAYOUT WRAPPERS
+   ═══════════════════════════════════════════════════════════════ */
+.fn-page {
+  font-synthesis: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--fn-surface);
+  color: var(--fn-fg);
+  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  line-height: 1rem;
+}
+
+.fn-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 24px 20px 54px 20px;
+  gap: 50px;
+}
+
+@media (max-width: 1023px) {
+  .fn-main {
+    padding-top: 0;
+  }
+}
+
+.fn-main__inner {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--fn-max-w);
+  width: 100%;
+  gap: 112px;
+}
+
+@media (max-width: 767px) {
+  .fn-main__inner {
+    gap: 32px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════════════════════ */
+.fn-hero {
+  position: relative;
+}
+
+.fn-hero__text {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  gap: 15px;
+}
+
+.fn-hero__title {
+  position: relative;
+  letter-spacing: -1px;
+  color: var(--fn-fg);
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 120%;
+  max-width: 700px;
+  padding-bottom: 0;
+  margin: 0;
+  font-family: var(--fn-font-display);
+}
+
+@media (max-width: 1023px) {
+  .fn-hero__title { font-size: 42px; line-height: 52px; }
+}
+
+@media (max-width: 639px) {
+  .fn-hero__title { font-size: 32px; line-height: 40px; margin-top: 20px; }
+}
+
+.fn-hero__subtitle {
+  max-width: 600px;
+  color: var(--fn-fg-secondary);
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.fn-hero__bg-wrap {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 441px;
+  height: 441px;
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .fn-hero__bg-wrap { display: none; }
+}
+
+/* Mobile grid — visible only on small screens, above h1 */
+.fn-hero__bg-wrap--mobile {
+  position: relative;
+  top: auto;
+  right: auto;
+  width: 100%;
+  /* aspect-ratio 7:6 = 7 cols × 6 rows → cells are perfectly square */
+  aspect-ratio: 7 / 6;
+  height: auto;
+  margin-bottom: 16px;
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .fn-hero__bg-wrap--mobile {
+    display: block;
+  }
+}
+
+.fn-hero__bg-wrap--mobile .fn-hero-grid {
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Hero grid (animated) ──────────────────────────────────── */
+.fn-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  width: 100%;
+  height: 100%;
+  clip-path: inset(-1px);
+}
+
+.fn-grid-cell {
+  position: relative;
+  opacity: 0;
+}
+
+.fn-grid-cell::before {
+  content: '';
+  position: absolute;
+  inset: -0.5px;
+  border: 1px solid var(--fn-grid-line, var(--fn-line));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fn-grid-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--cell-color);
+  opacity: var(--fn-cell-idle);
+  filter: var(--fn-cell-filter-idle);
+}
+
+.fn-grid-cell-active::after {
+  opacity: var(--fn-cell-idle-active);
+}
+
+/* Phase: drop */
+.fn-phase-drop .fn-grid-cell {
+  animation: fn-cell-drop 0.55s var(--fn-ease-out) calc(var(--drop-i, 0) * 120ms) forwards;
+}
+
+@keyframes fn-cell-drop {
+  0%   { opacity: 0; transform: translate3d(0, -300px, 0); }
+  30%  { opacity: 1; }
+  75%  { transform: translate3d(0, 4px, 0); }
+  90%  { transform: translate3d(0, -2px, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Phase: blink */
+.fn-phase-blink .fn-grid-cell {
+  opacity: 1;
+}
+
+.fn-phase-blink .fn-grid-cell-active {
+  animation: fn-cell-glow 9s ease-in-out calc(var(--cell-i, 0) * 1s) both;
+}
+
+.fn-phase-blink .fn-grid-cell-active::after {
+  animation: fn-cell-fill 9s ease-in-out calc(var(--cell-i, 0) * 1s) both;
+}
+
+@keyframes fn-cell-fill {
+  0%, 14%, 100% {
+    opacity: var(--fn-cell-idle-active);
+    filter:  var(--fn-cell-filter-idle);
+  }
+  5%, 9% {
+    opacity: 1;
+    filter:  var(--fn-cell-filter-glow);
+  }
+}
+
+@keyframes fn-cell-glow {
+  0%, 14%, 100% {
+    box-shadow:
+      inset 0 0 0 0 transparent,
+      0 0 0 0 transparent;
+  }
+  5%, 9% {
+    box-shadow:
+      inset 0 0 12px var(--fn-accent-glow),
+      0 0 var(--fn-cell-halo-blur) var(--fn-cell-halo-spread)
+        color-mix(in srgb, var(--cell-color) var(--fn-cell-halo-strength), transparent);
+  }
+}
+
+/* Phase: fadeout */
+.fn-phase-fadeout .fn-grid-cell {
+  opacity: 1;
+  animation: fn-cell-fadeout 0.8s var(--fn-ease) forwards;
+}
+
+@keyframes fn-cell-fadeout {
+  to { opacity: 0; transform: scale(0.92); }
+}
+
+/* Phase: pause */
+.fn-phase-pause .fn-grid-cell {
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCTS GRID
+   ═══════════════════════════════════════════════════════════════ */
+.fn-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  width: 100%;
+  gap: 24px;
+}
+
+@media (max-width: 767px) {
+  .fn-products {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.fn-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px;
+  border-radius: var(--fn-radius-md);
+  background: var(--fn-surface-raised);
+  border: 1px solid var(--fn-line);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform var(--fn-duration-slow) var(--fn-ease-out),
+    border-color var(--fn-duration-slow) var(--fn-ease),
+    box-shadow var(--fn-duration-slow) var(--fn-ease),
+    background-color var(--fn-duration-base) var(--fn-ease),
+    color var(--fn-duration-base) var(--fn-ease);
+}
+
+@media (max-width: 767px) {
+  .fn-card {
+    padding: 20px;
+    gap: 14px;
+  }
+}
+
+.fn-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--fn-accent-muted);
+  box-shadow: var(--fn-shadow-hover);
+}
+
+.fn-card__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .fn-card__icon-wrap {
+    height: 72px;
+    width: 72px;
+    border-radius: 12px;
+  }
+}
+
+.fn-card__icon {
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+.fn-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fn-card__title {
+  letter-spacing: -0.48px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33.6px;
+  color: var(--fn-card-t-light, var(--fn-fg));
+  transition: color var(--fn-duration-base) var(--fn-ease);
+}
+
+[data-md-color-scheme="slate"] .fn-card__title {
+  color: var(--fn-card-t-dark, var(--fn-fg));
+}
+
+/* Per-card icon sizes (mirrors `iconClass` in src/site.ts) */
+.fn-card__icon--loop-sdk       { height: 62px;  width: 74px;  }
+.fn-card__icon--id-sdk         { height: 20px;  width: 70px;  }
+.fn-card__icon--5n-infra       { height: 72px;  width: 72px;  background-size: cover; }
+.fn-card__icon--5n-dashboard   { height: 50px;  width: 46px;  }
+.fn-card__icon--5n-time-machine{ height: 44px;  width: 44px;  }
+.fn-card__icon--coming-soon    { height: 36px;  width: 36px;  }
+
+.fn-card__desc {
+  color: var(--fn-fg-secondary);
+  font-size: 16px;
+  line-height: 25.6px;
+}
+
+.fn-card__cta {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  gap: 8px;
+}
+
+.fn-card__cta-label {
+  color: var(--fn-fg);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16.8px;
+  flex-shrink: 0;
+}
+
+.fn-card__cta-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+  filter: var(--fn-logo-filter);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+.fn-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 64px 20px 32px 20px;
+  background: var(--fn-surface-section);
+  border-top: 1px solid var(--fn-line-muted);
+}
+
+.fn-footer__inner {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--fn-max-w);
+  width: 100%;
+  gap: 48px;
+  padding: 0 20px;
+}
+
+.fn-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.fn-footer__links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.fn-footer__link {
+  font-size: 14px;
+  color: var(--fn-fg-secondary);
+  text-decoration: none;
+  transition: color var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-footer__link:hover {
+  color: var(--fn-fg);
+}
+
+.fn-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid var(--fn-line-muted);
+}
+
+.fn-footer__copyright {
+  font-size: 12px;
+  letter-spacing: 0.24px;
+  color: var(--fn-fg-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DOCS PAGE TWEAKS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Keep docs pages breathing room under the sticky header */
+.md-main {
+  padding-top: 0.6rem;
+}
+
+/* Align Material's text on content pages with fn tokens */
+.md-typeset {
+  color: var(--fn-fg);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: var(--fn-fg);
+}
+
+.md-nav__link,
+.md-nav__title {
+  color: var(--fn-fg-secondary);
+}
+
+.md-nav__link:hover,
+.md-nav__link--active {
+  color: var(--fn-accent);
+}

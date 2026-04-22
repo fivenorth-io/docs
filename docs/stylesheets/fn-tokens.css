@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════════════════════════════
+   FIVENORTH DESIGN TOKENS
+   Ported from 5n-fivenorth-io/src/app.css.
+   Integrates with MkDocs Material palette via [data-md-color-scheme].
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@800;900&display=swap');
+
+/* ── Primitive tokens (constant, theme-independent) ────────── */
+:root {
+  --fn-accent:        #407AEF;
+  --fn-accent-muted:  rgba(64, 122, 239, 0.35);
+  --fn-accent-glow:   rgba(64, 122, 239, 0.15);
+
+  --fn-radius-md:     8px;
+
+  --fn-duration-fast: 200ms;
+  --fn-duration-base: 350ms;
+  --fn-duration-slow: 400ms;
+
+  --fn-ease:          ease;
+  --fn-ease-out:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --fn-shadow-hover:  0 12px 40px -8px var(--fn-accent-glow);
+
+  --fn-max-w:         61rem;   /* matches Material's .md-grid max-width exactly */
+
+  --fn-font-sans:     'Inter', system-ui, sans-serif;
+  --fn-font-display:  'Inter Tight', 'Inter', system-ui, sans-serif;
+}
+
+/* ── Semantic tokens · Light (Material "default") ──────────── */
+[data-md-color-scheme="default"] {
+  --fn-surface:         #FFFFFF;
+  --fn-surface-raised:  #F9FAFB;
+  --fn-surface-overlay: rgba(255, 255, 255, 0.8);
+  --fn-surface-inset:   #F3F4F6;
+  --fn-surface-section: #F9FAFB;
+
+  --fn-fg:              #111827;
+  --fn-fg-secondary:    #6B7280;
+  --fn-fg-muted:        #9CA3AF;
+
+  --fn-line:            #E5E7EB;
+  --fn-line-muted:      #E5E7EB;
+  --fn-line-divider:    #D1D5DB;
+
+  --fn-grid-line:       #C9CDD4;
+
+  --fn-cell-idle:              0.35;
+  --fn-cell-idle-active:       0.45;
+  --fn-cell-filter-idle:       saturate(1) brightness(1);
+  --fn-cell-filter-glow:       saturate(1.1) brightness(0.93);
+  --fn-cell-halo-blur:         22px;
+  --fn-cell-halo-spread:       3px;
+  --fn-cell-halo-strength:     65%;
+
+  --fn-logo-filter:     brightness(0);
+}
+
+/* ── Semantic tokens · Dark (Material "slate") ─────────────── */
+[data-md-color-scheme="slate"] {
+  --fn-surface:         #111113;
+  --fn-surface-raised:  #141517;
+  --fn-surface-overlay: rgba(17, 17, 19, 0.8);
+  --fn-surface-inset:   #1B1B1D;
+  --fn-surface-section: #111113;
+
+  --fn-fg:              #F8FAFC;
+  --fn-fg-secondary:    #94A3B8;
+  --fn-fg-muted:        #666666;
+
+  --fn-line:            #21242B;
+  --fn-line-muted:      #191B21;
+  --fn-line-divider:    #272626;
+
+  --fn-grid-line:       #21242B;
+
+  --fn-cell-idle:              0.08;
+  --fn-cell-idle-active:       0.15;
+  --fn-cell-filter-idle:       saturate(1) brightness(1);
+  --fn-cell-filter-glow:       saturate(1) brightness(1);
+  --fn-cell-halo-blur:         10px;
+  --fn-cell-halo-spread:       1px;
+  --fn-cell-halo-strength:     30%;
+
+  --fn-logo-filter:     none;
+
+  /* ── Material palette overrides for slate scheme ──────────────
+     Because we disabled Material's built-in `palette:` to keep our
+     custom JS as the single source of truth, we need to remap
+     Material's own CSS variables to our dark tokens — otherwise
+     sticky bars (.md-nav__title), admonitions, code blocks, etc.
+     keep their default LIGHT values and bleed through in dark mode
+     (the "white streak" at the top of the sidebars). */
+  --md-default-bg-color:         #111113;
+  --md-default-bg-color--light:  rgba(17, 17, 19, 0.7);
+  --md-default-bg-color--lighter:rgba(17, 17, 19, 0.3);
+  --md-default-bg-color--lightest:rgba(17, 17, 19, 0.12);
+
+  --md-default-fg-color:         #F8FAFC;
+  --md-default-fg-color--light:  #94A3B8;
+  --md-default-fg-color--lighter:#666666;
+  --md-default-fg-color--lightest:#2E333C;
+
+  --md-primary-fg-color:         #407AEF;
+  --md-primary-bg-color:         #F8FAFC;
+  --md-accent-fg-color:          #407AEF;
+  --md-accent-bg-color:          #F8FAFC;
+
+  --md-typeset-color:            #F8FAFC;
+  --md-typeset-a-color:          #407AEF;
+  --md-typeset-table-color:      rgba(255, 255, 255, 0.12);
+  --md-typeset-table-color--light:rgba(255, 255, 255, 0.035);
+  --md-typeset-mark-color:       rgba(64, 122, 239, 0.28);
+
+  --md-code-fg-color:            #E2E8F0;
+  --md-code-bg-color:            #1B1B1D;
+  --md-code-hl-color:            rgba(64, 122, 239, 0.3);
+
+  --md-admonition-fg-color:      #F8FAFC;
+  --md-admonition-bg-color:      #141517;
+
+  --md-footer-fg-color:          #F8FAFC;
+  --md-footer-fg-color--light:   #94A3B8;
+  --md-footer-fg-color--lighter: #666666;
+  --md-footer-bg-color:          #111113;
+  --md-footer-bg-color--dark:    #0A0A0C;
+}
+
+/* ── Global element smoothing ──────────────────────────────── */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Smooth theme transition for all themed elements */
+.fn-t {
+  transition:
+    background-color var(--fn-duration-base) var(--fn-ease),
+    color var(--fn-duration-base) var(--fn-ease),
+    border-color var(--fn-duration-base) var(--fn-ease),
+    filter var(--fn-duration-base) var(--fn-ease);
+}
+
+/* Logo filter inversion (svg/png logos stay legible on both themes) */
+.fn-logo {
+  filter: var(--fn-logo-filter);
+  transition: filter var(--fn-duration-base) var(--fn-ease);
+}
+
+/* Background-image icon sizing */
+.fn-icon {
+  background-size: round(100%, 0.5px) round(100%, 0.5px);
+}

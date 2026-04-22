@@ -1,0 +1,63 @@
+{#
+  Global template override for all MkDocs Material pages.
+  - Replaces the default Material header with the fivenorth header (includes pill tabs).
+  - Replaces the default Material footer with the fivenorth footer.
+  - Removes Material's announcement bar and default tabs row.
+#}
+{% extends "base.html" %}
+
+{# Apply theme synchronously in <head> to prevent flash-of-wrong-theme.
+   Must stay in sync with docs/javascripts/fn-theme.js. #}
+{% block extrahead %}
+  {{ super() }}
+
+  {# ── Social / Open Graph meta ───────────────────────────────── #}
+  {% set _title = (page.title ~ ' — ' if page and page.title else '') ~ config.site_name %}
+  {% set _desc  = page.meta.description if page and page.meta.description else config.site_description %}
+  {% set _url   = page.canonical_url if page and page.canonical_url else config.site_url %}
+  {% set _img   = config.site_url ~ 'assets/social.png' %}
+
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="{{ config.site_name }}">
+  <meta property="og:title"       content="{{ _title }}">
+  <meta property="og:description" content="{{ _desc }}">
+  <meta property="og:url"         content="{{ _url }}">
+  <meta property="og:image"       content="{{ _img }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="{{ config.site_name }}">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="{{ _title }}">
+  <meta name="twitter:description" content="{{ _desc }}">
+  <meta name="twitter:image"       content="{{ _img }}">
+  <meta name="twitter:image:alt"   content="{{ config.site_name }}">
+
+  <script>
+    (function () {
+      try {
+        var v = localStorage.getItem('fn-theme');
+        var theme = (v === 'light' || v === 'dark' || v === 'system') ? v : 'system';
+        var resolved = theme === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : theme;
+        var scheme = resolved === 'light' ? 'default' : 'slate';
+        document.documentElement.setAttribute('data-md-color-scheme', scheme);
+      } catch (_) {
+        document.documentElement.setAttribute('data-md-color-scheme', 'slate');
+      }
+    })();
+  </script>
+{% endblock %}
+
+{% block announce %}{% endblock %}
+
+{% block header %}
+  {% include "partials/fn-header.html" %}
+{% endblock %}
+
+{% block tabs %}{% endblock %}
+
+{% block footer %}
+  {% include "partials/fn-footer.html" %}
+{% endblock %}

@@ -1,0 +1,141 @@
+{#
+  Home landing page template.
+  Ported from 5n-fivenorth-io/src/LandingPage.tsx (HeroSection + ProductsSection).
+  Used on any markdown page with `template: home.html` front-matter.
+#}
+{% extends "main.html" %}
+
+{# Product list — mirrors PRODUCTS array in site.ts. #}
+{% set fn_products = [
+  {
+    'id': 'loop-sdk',
+    'title': 'Loop SDK',
+    'title_color': '#F2FF96', 'title_color_light': '#4D5A0A',
+    'icon_bg': '#1E293B',
+    'icon_url': 'assets/fn/icon-loop-sdk.svg',
+    'icon_class': 'fn-card__icon--loop-sdk',
+    'description': 'Loop SDK is a lightweight JavaScript client that allows dApps to securely connect to the Loop wallet. The SDK also includes a server-side signing flow for integrators who want to sign and submit transactions without a wallet popup.',
+    'docs_url': 'loop-sdk/overview/'
+  },
+  {
+    'id': 'id-sdk',
+    'title': 'ID SDK',
+    'title_color': '#97E4FE', 'title_color_light': '#0369A1',
+    'icon_bg': '#97E4FE',
+    'icon_url': 'assets/fn/icon-id-sdk.svg',
+    'icon_class': 'fn-card__icon--id-sdk',
+    'description': 'The 5N ID service provides secure, tamper-proof identity verification and credential management through smart contracts on the Canton network.',
+    'docs_url': 'id-sdk/introduction/'
+  },
+  {
+    'id': '5n-infra',
+    'title': '5N Infra',
+    'title_color': '#528BFF', 'title_color_light': '#1D4ED8',
+    'icon_bg': '#042A77',
+    'icon_url': 'assets/fn/icon-5n-infra.png',
+    'icon_class': 'fn-card__icon--5n-infra',
+    'is_img': true,
+    'description': '5N provides hosted node service where we can operate operator for you. Contact nodesupport@fivenorth.io for detail.',
+    'docs_url': '5n-infra/'
+  },
+  {
+    'id': '5n-dashboard',
+    'title': '5N Dashboard',
+    'title_color': '#E4DCF9', 'title_color_light': '#6D28D9',
+    'icon_bg': '#E4DCF9',
+    'icon_url': 'assets/fn/icon-5n-dashboard.svg',
+    'icon_class': 'fn-card__icon--5n-dashboard',
+    'description': 'The goal of the 5N Dashboard is to give developers and administrators the tools needed to effectively deploy, monitor, maintain, and back up both the node and their Canton‑based applications.',
+    'docs_url': '5n-dashboard/introduction/'
+  },
+  {
+    'id': '5n-time-machine',
+    'title': '5N Time Machine',
+    'title_color': '#F0FCF0', 'title_color_light': '#15803D',
+    'icon_bg': '#F0FCF0',
+    'icon_url': 'assets/fn/icon-5n-time-machine.svg',
+    'icon_class': 'fn-card__icon--5n-time-machine',
+    'description': '5N Time Machine subscribes to your ledger, gets all the updates, and saves them into a Postgres database in a schema called time_machine.',
+    'docs_url': '5n-timemachine/introduction/'
+  },
+  {
+    'id': 'coming-soon',
+    'title': 'Coming Soon',
+    'title_color': '#F8FAFC', 'title_color_light': '#374151',
+    'icon_bg': '#161920',
+    'icon_url': 'assets/fn/icon-coming-soon.svg',
+    'icon_class': 'fn-card__icon--coming-soon',
+    'description': 'More products are coming soon...'
+  }
+] %}
+
+{% block container %}
+<div class="md-container fn-home-container" data-md-component="container">
+  <main class="md-main fn-home-main" data-md-component="main">
+    <div class="fn-main">
+      <div class="fn-main__inner">
+
+        {# ── Hero section ── #}
+        <section class="fn-hero">
+
+          {# Grid mobile — shown above h1, hidden on desktop #}
+          <div class="fn-hero__bg-wrap fn-hero__bg-wrap--mobile" aria-hidden="true">
+            <div class="fn-hero-grid fn-phase-drop" data-fn-hero-grid-mobile></div>
+          </div>
+
+          <div class="fn-hero__text">
+            <h1 class="fn-hero__title fn-t">
+              Foundational infrastructure for decentralized financial networks.
+            </h1>
+            <p class="fn-hero__subtitle fn-t">
+              At Five North Infrastructure, we're engineering the foundational
+              systems that empower next-generation financial networks:
+              Decentralized, privacy-preserving, and tailored for institutional scale.
+            </p>
+          </div>
+          <div class="fn-hero__bg-wrap" aria-hidden="true">
+            <div class="fn-hero-grid fn-phase-drop" data-fn-hero-grid></div>
+          </div>
+        </section>
+
+        {# ── Products grid ── #}
+        <section class="fn-products">
+          {% for p in fn_products %}
+            {% if p.docs_url %}
+              <a href="{{ p.docs_url | url }}" class="fn-card fn-t">
+            {% else %}
+              <div class="fn-card fn-t">
+            {% endif %}
+                <div class="fn-card__icon-wrap" style="background-color: {{ p.icon_bg }};">
+                  <div class="fn-card__icon {{ p.icon_class }}{% if not p.is_img %} fn-icon{% endif %}"
+                       style="background-image: url({{ p.icon_url | url }});"></div>
+                </div>
+
+                <div class="fn-card__body">
+                  <div class="fn-card__title fn-t"
+                       style="--fn-card-t-light: {{ p.title_color_light }}; --fn-card-t-dark: {{ p.title_color }};">
+                    {{ p.title }}
+                  </div>
+                  <div class="fn-card__desc fn-t">{{ p.description }}</div>
+                </div>
+
+                {% if p.docs_url %}
+                  <div class="fn-card__cta">
+                    <div class="fn-card__cta-label fn-t">View docs</div>
+                    <div class="fn-card__cta-icon"
+                         style="background-image: url({{ 'assets/fn/icon-arrow.svg' | url }});"></div>
+                  </div>
+                {% endif %}
+            {% if p.docs_url %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </section>
+
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
