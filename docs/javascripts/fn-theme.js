@@ -27,9 +27,9 @@
     } catch (_) { return null; }
   }
 
-  /* Dark is the default for first-time visitors. */
+  /* Follow OS preference for first-time visitors. */
   function computeTheme() {
-    return getStoredTheme() || 'dark';
+    return getStoredTheme() || 'system';
   }
 
   /* Resolve system preference to actual light/dark */
@@ -55,6 +55,16 @@
 
   /* Apply theme as early as possible to prevent FOUC. */
   applyTheme(computeTheme());
+
+  /* Re-apply when OS theme changes (only takes effect when user chose 'system') */
+  try {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
+      if (computeTheme() === 'system') {
+        applyTheme('system');
+        updatePillActive();
+      }
+    });
+  } catch (_) {}
 
   /* ═════════════════ Mobile menu helpers ═════════════════ */
 
@@ -83,6 +93,7 @@
      and CSS turns .fn-search-wrap into a full-screen overlay. */
 
   var _mobileSearchOpen = false;
+  var _searchFocusRetry = null;
 
   /* Material emits `<input id="__search" data-md-toggle="search">` at body
      level. Its search module is wired to that exact element via
@@ -107,6 +118,7 @@
   function closeMobileSearch() {
     if (!_mobileSearchOpen) return;
     _mobileSearchOpen = false;
+    if (_searchFocusRetry) { clearInterval(_searchFocusRetry); _searchFocusRetry = null; }
     document.body.classList.remove('fn-mobile-search-active');
     document.querySelectorAll('[data-fn-search-toggle]').forEach(function (b) {
       b.setAttribute('aria-expanded', 'false');
@@ -149,9 +161,11 @@
       requestAnimationFrame(function () {
         q.focus();
         var tries = 0;
-        var retry = setInterval(function () {
+        if (_searchFocusRetry) { clearInterval(_searchFocusRetry); }
+        _searchFocusRetry = setInterval(function () {
           if (document.activeElement === q || ++tries > 8) {
-            clearInterval(retry);
+            clearInterval(_searchFocusRetry);
+            _searchFocusRetry = null;
           } else {
             q.focus();
           }

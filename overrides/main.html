@@ -14,7 +14,7 @@
     (function () {
       try {
         var v = localStorage.getItem('fn-theme');
-        var theme = (v === 'light' || v === 'dark' || v === 'system') ? v : 'dark';
+        var theme = (v === 'light' || v === 'dark' || v === 'system') ? v : 'system';
         var resolved = theme === 'system'
           ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
           : theme;
