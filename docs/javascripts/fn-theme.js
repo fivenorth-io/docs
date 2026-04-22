@@ -398,6 +398,46 @@
     });
   }
 
+  /* ═════════════════ Desktop search shortcut (⌘K / Ctrl+K) ═════════════════ */
+
+  var _searchShortcutBound = false;
+
+  function initDesktopSearchShortcut() {
+    /* Inject ⌘K badge into the search form (once) */
+    var form = document.querySelector('.fn-search-wrap .md-search__form');
+    if (form && !form.querySelector('.fn-search-kbd')) {
+      var kbd = document.createElement('span');
+      kbd.className = 'fn-search-kbd';
+      kbd.setAttribute('aria-hidden', 'true');
+      var isMac = /Mac|iPhone|iPod|iPad/.test(navigator.platform || '');
+      kbd.innerHTML = isMac
+        ? '<kbd>⌘</kbd><kbd>K</kbd>'
+        : '<kbd>Ctrl</kbd><kbd>K</kbd>';
+      form.appendChild(kbd);
+    }
+
+    if (_searchShortcutBound) return;
+    _searchShortcutBound = true;
+
+    document.addEventListener('keydown', function (e) {
+      /* Only on desktop (search wrap is visible) */
+      if (window.innerWidth <= 767) return;
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        var q = getSearchInput();
+        if (q) {
+          q.focus();
+          q.select();
+        }
+      }
+      /* Escape blurs the input */
+      if (e.key === 'Escape') {
+        var q = getSearchInput();
+        if (q && document.activeElement === q) q.blur();
+      }
+    });
+  }
+
   /* ═════════════════ Per-page init ═════════════════ */
 
   function initPage() {
@@ -411,6 +451,7 @@
     bindSearchToggleButtons();
     initHero();
     initStickyBar();
+    initDesktopSearchShortcut();
   }
 
   /* ═════════════════ Global (one-time) wiring ═════════════════

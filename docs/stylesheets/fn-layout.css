@@ -67,7 +67,7 @@ body {
 .fn-header__brand {
   display: flex;
   justify-content: center;
-  padding: 16px 20px 12px;
+  padding: 16px 0 12px;
   background-color: var(--fn-surface);
   border-bottom: 1px solid #2e323c;
   flex: 0 0 auto;
@@ -81,6 +81,7 @@ body {
   max-width: var(--fn-max-w);
   width: 100%;
   min-width: 0;
+  padding: 0 20px;
 }
 
 /* ── Sticky action bar (tabs + search + theme + hamburger) ───── */
@@ -90,7 +91,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 10px 20px;
+  padding: 10px 0;
   background-color: var(--fn-surface-overlay);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -115,6 +116,7 @@ body {
   max-width: var(--fn-max-w);
   width: 100%;
   gap: 16px;
+  padding: 0 20px;
 }
 
 /* Mobile nav drawer also needs flex-item sizing */
@@ -479,6 +481,38 @@ body {
 
 /* Hide the "previous" (back arrow) icon that Material swaps in on mobile */
 .fn-search-wrap .md-search__icon[for="__search"] svg:nth-child(2) {
+  display: none;
+}
+
+/* ⌘K / Ctrl+K badge inside the search input */
+.fn-search-kbd {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  pointer-events: none;
+  margin-right: 2px;
+}
+
+.fn-search-kbd kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid var(--fn-line-divider);
+  background: var(--fn-surface-raised);
+  color: var(--fn-fg-muted);
+  font-size: 10px;
+  font-family: inherit;
+  line-height: 1;
+  font-style: normal;
+}
+
+/* Hide badge when input has focus (user is typing) */
+.fn-search-wrap .md-search__form:focus-within .fn-search-kbd {
   display: none;
 }
 
