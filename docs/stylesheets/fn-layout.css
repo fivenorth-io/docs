@@ -69,8 +69,7 @@ body {
   justify-content: center;
   padding: 16px 20px 12px;
   background-color: var(--fn-surface);
-  /* Body's align-items: stretch would otherwise try to equalize heights.
-     We want each bar to take its natural height. */
+  border-bottom: 1px solid #2e323c;
   flex: 0 0 auto;
   align-self: stretch;
 }
