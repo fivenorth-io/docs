@@ -1299,6 +1299,7 @@ label.md-search__overlay {
 .fn-card__icon--5n-infra       { height: 72px;  width: 72px;  background-size: cover; }
 .fn-card__icon--5n-dashboard   { height: 50px;  width: 46px;  }
 .fn-card__icon--5n-time-machine{ height: 44px;  width: 44px;  }
+.fn-card__icon--security    { height: 36px;  width: 36px;  }
 .fn-card__icon--coming-soon    { height: 36px;  width: 36px;  }
 
 .fn-card__desc {
