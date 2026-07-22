@@ -106,3 +106,5 @@ nav:
   - 5N Time Machine:
     - Overview: 5n-timemachine/introduction.md
     - Installation: 5n-timemachine/install.md
+  - Security:
+    - Overview: security/introduction.md
