@@ -1,94 +1,95 @@
 {#
-  Fivenorth custom header — FOUR sibling elements at body level:
+Fivenorth custom header — FOUR sibling elements at body level:
 
-    1. <header .fn-header__brand>   — logo + title, scrolls away.
-    2. <header .fn-header__sticky>  — tabs sticky bar.
-    3. <div    .fn-search-wrap>     — search component (sibling, NOT inside
-                                     .fn-header__sticky which has backdrop-
-                                     filter; placing it here lets position:fixed
-                                     work relative to the real viewport).
-    4. <div    .fn-mobile-nav>      — hamburger drawer.
-#}
-{% set fn_tabs = [
-  { 'label': 'Home',            'href': '' | url },
-  { 'label': '5N Infra',        'href': '5n-infra/' | url },
-  { 'label': '5N Dashboard',    'href': '5n-dashboard/introduction/' | url },
-  { 'label': 'Loop SDK',        'href': 'loop-sdk/overview/' | url },
-  { 'label': 'ID SDK',          'href': 'id-sdk/introduction/' | url },
-  { 'label': '5N Time Machine', 'href': '5n-timemachine/introduction/' | url }
-] %}
+1. <header .fn-header__brand> — logo + title, scrolls away.
+    2. <header .fn-header__sticky> — tabs sticky bar.
+        3. <div .fn-search-wrap> — search component (sibling, NOT inside
+            .fn-header__sticky which has backdrop-
+            filter; placing it here lets position:fixed
+            work relative to the real viewport).
+            4. <div .fn-mobile-nav> — hamburger drawer.
+                #}
+                {% set fn_tabs = [
+                { 'label': 'Home', 'href': '' | url },
+                { 'label': '5N Infra', 'href': '5n-infra/' | url },
+                { 'label': '5N Dashboard', 'href': '5n-dashboard/introduction/' | url },
+                { 'label': 'Loop SDK', 'href': 'loop-sdk/overview/' | url },
+                { 'label': 'ID SDK', 'href': 'id-sdk/introduction/' | url },
+                { 'label': '5N Time Machine', 'href': '5n-timemachine/introduction/' | url },
+                { 'label': 'Security', 'href': 'security/introduction/' | url }
+                ] %}
 
-{# ── 1. Brand bar (scrolls with page) ────────────────────────── #}
-<header class="fn-header__brand fn-t" role="banner">
-  <div class="fn-header__brand-inner">
-    <a href="{{ '' | url }}" class="fn-logo-link" aria-label="Five North — home">
-      <div class="fn-logo-img fn-logo fn-icon"
-           style="background-image: url({{ 'assets/fn/logo.svg' | url }});"></div>
-    </a>
-{# Mobile controls: Search icon + Hamburger #}
-    <div class="fn-mobile-controls">
-      <button type="button" class="fn-mobile-search-btn"
-              data-fn-search-toggle aria-label="Search" aria-expanded="false">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round"
-             stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-      </button>
-      <button type="button" class="fn-hamburger fn-hamburger--brand"
-              data-fn-hamburger aria-label="Toggle menu" aria-expanded="false">
-        <span class="fn-hamburger-line"></span>
-      </button>
-    </div>
-  </div>
-</header>
+                {# ── 1. Brand bar (scrolls with page) ────────────────────────── #}
+                <header class="fn-header__brand fn-t" role="banner">
+                    <div class="fn-header__brand-inner">
+                        <a href="{{ '' | url }}" class="fn-logo-link" aria-label="Five North — home">
+                            <div class="fn-logo-img fn-logo fn-icon"
+                                style="background-image: url({{ 'assets/fn/logo.svg' | url }});"></div>
+                        </a>
+                        {# Mobile controls: Search icon + Hamburger #}
+                        <div class="fn-mobile-controls">
+                            <button type="button" class="fn-mobile-search-btn" data-fn-search-toggle aria-label="Search"
+                                aria-expanded="false">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.35-4.35" />
+                                </svg>
+                            </button>
+                            <button type="button" class="fn-hamburger fn-hamburger--brand" data-fn-hamburger
+                                aria-label="Toggle menu" aria-expanded="false">
+                                <span class="fn-hamburger-line"></span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
 
-{# ── 2. Sticky action bar ─────────────────────────────────────────
-   MUST be a <header> tag: Material's search worker calls
-   R("header [for=__search]") on init. We satisfy it with a hidden stub
-   label so the real .fn-search-wrap can live OUTSIDE this element. #}
-<header class="fn-header__sticky fn-t" data-fn-sticky-bar
-        data-md-component="header" role="navigation" aria-label="Primary">
-  {# Stub: satisfies Material's R("header [for=__search]") selector #}
-  <label for="__search" style="display:none" aria-hidden="true"></label>
-  <div class="fn-header__sticky-inner">
-    <nav class="fn-tabnav" aria-label="Sections">
-      {% for tab in fn_tabs %}
-        <a href="{{ tab.href }}" class="fn-tab fn-t" data-fn-tab
-           {% if tab.external %}target="_blank" rel="noopener noreferrer"{% endif %}>
-          <div class="fn-tab__label">{{ tab.label }}</div>
-        </a>
-      {% endfor %}
-    </nav>
-    <div class="fn-header__right">
-      {# Anchor keeps right-side padding; search floats above via CSS. #}
-    </div>
-  </div>
-</header>
+                {# ── 2. Sticky action bar ─────────────────────────────────────────
+                MUST be a <header> tag: Material's search worker calls
+                    R("header [for=__search]") on init. We satisfy it with a hidden stub
+                    label so the real .fn-search-wrap can live OUTSIDE this element. #}
+                    <header class="fn-header__sticky fn-t" data-fn-sticky-bar data-md-component="header"
+                        role="navigation" aria-label="Primary">
+                        {# Stub: satisfies Material's R("header [for=__search]") selector #}
+                        <label for="__search" style="display:none" aria-hidden="true"></label>
+                        <div class="fn-header__sticky-inner">
+                            <nav class="fn-tabnav" aria-label="Sections">
+                                {% for tab in fn_tabs %}
+                                <a href="{{ tab.href }}" class="fn-tab fn-t" data-fn-tab {% if tab.external
+                                    %}target="_blank" rel="noopener noreferrer" {% endif %}>
+                                    <div class="fn-tab__label">{{ tab.label }}</div>
+                                </a>
+                                {% endfor %}
+                            </nav>
+                            <div class="fn-header__right">
+                                {# Anchor keeps right-side padding; search floats above via CSS. #}
+                            </div>
+                        </div>
+                    </header>
 
-{# ── 3. Search wrap — sibling of .fn-header__sticky ──────────────
-   The toggle checkbox `#__search` is emitted automatically by Material's
-   base.html at body level (before this header), so the CSS sibling
-   selector `[data-md-toggle="search"]:checked ~ .fn-search-wrap ...`
-   still works — no need for our own duplicate toggle.
+                    {# ── 3. Search wrap — sibling of .fn-header__sticky ──────────────
+                    The toggle checkbox `#__search` is emitted automatically by Material's
+                    base.html at body level (before this header), so the CSS sibling
+                    selector `[data-md-toggle="search"]:checked ~ .fn-search-wrap ...`
+                    still works — no need for our own duplicate toggle.
 
-   No backdrop-filter ancestor → position:fixed works vs viewport.
-   Desktop: fixed, right-aligned, same height as sticky bar.
-   Mobile:  fixed full-screen overlay when fn-mobile-search-active. #}
-<div class="fn-search-wrap fn-t" data-fn-search-wrap>
-  {% include "partials/search.html" %}
-</div>
+                    No backdrop-filter ancestor → position:fixed works vs viewport.
+                    Desktop: fixed, right-aligned, same height as sticky bar.
+                    Mobile: fixed full-screen overlay when fn-mobile-search-active. #}
+                    <div class="fn-search-wrap fn-t" data-fn-search-wrap>
+                        {% include "partials/search.html" %}
+                    </div>
 
-{# ── 5. Mobile nav drawer ─────────────────────────────────────── #}
-<div class="fn-mobile-nav" data-fn-mobile-nav>
-  <div>
-    <div class="fn-mobile-nav__list">
-      {% for tab in fn_tabs %}
-        <a href="{{ tab.href }}" class="fn-mobile-nav__link fn-t" data-fn-tab
-           {% if tab.external %}target="_blank" rel="noopener noreferrer"{% endif %}>
-          {{ tab.label }}
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-</div>
+                    {# ── 5. Mobile nav drawer ─────────────────────────────────────── #}
+                    <div class="fn-mobile-nav" data-fn-mobile-nav>
+                        <div>
+                            <div class="fn-mobile-nav__list">
+                                {% for tab in fn_tabs %}
+                                <a href="{{ tab.href }}" class="fn-mobile-nav__link fn-t" data-fn-tab {% if tab.external
+                                    %}target="_blank" rel="noopener noreferrer" {% endif %}>
+                                    {{ tab.label }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
