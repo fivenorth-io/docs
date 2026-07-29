@@ -1,0 +1,2594 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Foundational infrastructure documentation for decentralized financial networks — Five North Group.">
+      
+      
+        <meta name="author" content="Five North Group">
+      
+      
+        <link rel="canonical" href="https://www.fivenorthgroup.com/loop-sdk/api-reference/">
+      
+      
+        <link rel="prev" href="../demo/">
+      
+      
+        <link rel="next" href="../release/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>API reference - Operating Documents</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter Tight";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fn-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/fn-layout.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+
+  
+  
+  
+  
+  
+
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Operating Documents">
+  <meta property="og:title"       content="API reference — Operating Documents">
+  <meta property="og:description" content="Foundational infrastructure documentation for decentralized financial networks — Five North Group.">
+  <meta property="og:url"         content="https://www.fivenorthgroup.com/loop-sdk/api-reference/">
+  <meta property="og:image"       content="https://www.fivenorthgroup.com/assets/social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="Operating Documents">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="API reference — Operating Documents">
+  <meta name="twitter:description" content="Foundational infrastructure documentation for decentralized financial networks — Five North Group.">
+  <meta name="twitter:image"       content="https://www.fivenorthgroup.com/assets/social.png">
+  <meta name="twitter:image:alt"   content="Operating Documents">
+
+  <script>
+    (function () {
+      try {
+        var v = localStorage.getItem('fn-theme');
+        var theme = (v === 'light' || v === 'dark' || v === 'system') ? v : 'system';
+        var resolved = theme === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : theme;
+        var scheme = resolved === 'light' ? 'default' : 'slate';
+        document.documentElement.setAttribute('data-md-color-scheme', scheme);
+      } catch (_) {
+        document.documentElement.setAttribute('data-md-color-scheme', 'slate');
+      }
+    })();
+  </script>
+
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  
+                
+
+                
+                <header class="fn-header__brand fn-t" role="banner">
+                    <div class="fn-header__brand-inner">
+                        <a href="../.." class="fn-logo-link" aria-label="Five North — home">
+                            <div class="fn-logo-img fn-logo fn-icon"
+                                style="background-image: url(../../assets/fn/logo.svg);"></div>
+                        </a>
+                        
+                        <div class="fn-mobile-controls">
+                            <button type="button" class="fn-mobile-search-btn" data-fn-search-toggle aria-label="Search"
+                                aria-expanded="false">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.35-4.35" />
+                                </svg>
+                            </button>
+                            <button type="button" class="fn-hamburger fn-hamburger--brand" data-fn-hamburger
+                                aria-label="Toggle menu" aria-expanded="false">
+                                <span class="fn-hamburger-line"></span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                
+                    <header class="fn-header__sticky fn-t" data-fn-sticky-bar data-md-component="header"
+                        role="navigation" aria-label="Primary">
+                        
+                        <label for="__search" style="display:none" aria-hidden="true"></label>
+                        <div class="fn-header__sticky-inner">
+                            <nav class="fn-tabnav" aria-label="Sections">
+                                
+                                <a href="../.." class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">Home</div>
+                                </a>
+                                
+                                <a href="../../5n-infra/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">5N Infra</div>
+                                </a>
+                                
+                                <a href="../../5n-dashboard/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">5N Dashboard</div>
+                                </a>
+                                
+                                <a href="../overview/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">Loop SDK</div>
+                                </a>
+                                
+                                <a href="../../id-sdk/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">ID SDK</div>
+                                </a>
+                                
+                                <a href="../../5n-timemachine/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">5N Time Machine</div>
+                                </a>
+                                
+                                <a href="../../security/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">Security</div>
+                                </a>
+                                
+                            </nav>
+                            <div class="fn-header__right">
+                                
+                            </div>
+                        </div>
+                    </header>
+
+                    
+                    <div class="fn-search-wrap fn-t" data-fn-search-wrap>
+                        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                    </div>
+
+                    
+                    <div class="fn-mobile-nav" data-fn-mobile-nav>
+                        <div>
+                            <div class="fn-mobile-nav__list">
+                                
+                                <a href="../.." class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    Home
+                                </a>
+                                
+                                <a href="../../5n-infra/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    5N Infra
+                                </a>
+                                
+                                <a href="../../5n-dashboard/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    5N Dashboard
+                                </a>
+                                
+                                <a href="../overview/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    Loop SDK
+                                </a>
+                                
+                                <a href="../../id-sdk/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    ID SDK
+                                </a>
+                                
+                                <a href="../../5n-timemachine/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    5N Time Machine
+                                </a>
+                                
+                                <a href="../../security/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    Security
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Operating Documents" class="md-nav__button md-logo" aria-label="Operating Documents" data-md-component="logo">
+      
+  <img src="../../assets/logo_infrastructure_for-dark-bg.svg" alt="logo">
+
+    </a>
+    Operating Documents
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../5n-infra/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    5N Infra
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            5N Infra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosted-node/hosted-node-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosted Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sandbox/sandbox-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sandbox
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sponsor
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sponsor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsored-node/check-ip-allow-status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IP Restriction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsored-node/network-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network Param
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    5N Dashboard
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            5N Dashboard
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/dar-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAR management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/party-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Party Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Loop SDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Loop SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Server API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loop-object-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop Object API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="loop Object API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loopinitconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.init(config)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="loop.init(config)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.connect()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopautoconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.autoConnect()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#looplogout" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.logout()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopverifysession" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.verifySession()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Provider API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providergetauthtoken-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getAuthToken(): string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providergetaccount-promiseaccount" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getAccount(): Promise&lt;Account&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providergetholding-promiseholding" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getHolding(): Promise&lt;Holding[]&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providergetactivecontracts-templateid-interfaceid-promiseactivecontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getActiveContracts({ templateId?, interfaceId? }): Promise&lt;ActiveContract[]&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providerestimategaspayload-promiseestimatedgasresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.estimateGas(payload): Promise&lt;EstimatedGasResponse&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providersubmittransactioncommand-options-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.submitTransaction(command, options?): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providersubmitandwaitfortransactioncommand-options-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.submitAndWaitForTransaction(command, options?): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providertransferrecipient-amount-instrument-options-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.transfer(recipient, amount, instrument?, options?): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-sdk-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server SDK API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server SDK API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loopestimategaspayload-promiseestimatedgasresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.estimateGas(payload): Promise&lt;EstimatedGasResponse&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopcheckduegastrackingid-promisependinggasresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.checkDueGas(trackingId?): Promise&lt;PendingGasResponse&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#looppaygastrackingid-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.payGas(trackingId): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providersignmessagemessage-string-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.signMessage(message: string): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-lifecycle-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request lifecycle hooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request lifecycle hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providerhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProviderHooks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrumentid" class="md-nav__link">
+    <span class="md-ellipsis">
+      InstrumentId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#holding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Holding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activecontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActiveContract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-code-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internal Code Path
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internal Code Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-connect-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Connect Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-approval-rejection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Approval / Rejection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-session-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Session Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ID SDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ID SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/sdk-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    5N Time Machine
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5N Time Machine
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-timemachine/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-timemachine/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loop-object-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop Object API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="loop Object API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loopinitconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.init(config)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="loop.init(config)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.connect()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopautoconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.autoConnect()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#looplogout" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.logout()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopverifysession" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.verifySession()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Provider API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providergetauthtoken-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getAuthToken(): string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providergetaccount-promiseaccount" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getAccount(): Promise&lt;Account&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providergetholding-promiseholding" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getHolding(): Promise&lt;Holding[]&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providergetactivecontracts-templateid-interfaceid-promiseactivecontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.getActiveContracts({ templateId?, interfaceId? }): Promise&lt;ActiveContract[]&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providerestimategaspayload-promiseestimatedgasresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.estimateGas(payload): Promise&lt;EstimatedGasResponse&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providersubmittransactioncommand-options-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.submitTransaction(command, options?): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providersubmitandwaitfortransactioncommand-options-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.submitAndWaitForTransaction(command, options?): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providertransferrecipient-amount-instrument-options-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.transfer(recipient, amount, instrument?, options?): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-sdk-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server SDK API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server SDK API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loopestimategaspayload-promiseestimatedgasresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.estimateGas(payload): Promise&lt;EstimatedGasResponse&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loopcheckduegastrackingid-promisependinggasresponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.checkDueGas(trackingId?): Promise&lt;PendingGasResponse&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#looppaygastrackingid-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      loop.payGas(trackingId): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providersignmessagemessage-string-promiseany" class="md-nav__link">
+    <span class="md-ellipsis">
+      provider.signMessage(message: string): Promise&lt;any&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-lifecycle-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request lifecycle hooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request lifecycle hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providerhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProviderHooks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrumentid" class="md-nav__link">
+    <span class="md-ellipsis">
+      InstrumentId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#holding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Holding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activecontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActiveContract
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-code-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internal Code Path
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internal Code Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Init
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-connect-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Connect Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-approval-rejection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Approval / Rejection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-session-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Session Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>This section lists all publicly available SDK APIs to dApps.</p>
+<hr />
+<h2 id="loop-object-api"><code>loop</code> Object API<a class="headerlink" href="#loop-object-api" title="Permanent link">&para;</a></h2>
+<p>The main entry point of the SDK.</p>
+<h3 id="loopinitconfig"><code>loop.init(config)</code><a class="headerlink" href="#loopinitconfig" title="Permanent link">&para;</a></h3>
+<p>Initializes the SDK. Must be called once during the app startup.</p>
+<h4 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h4>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">loop</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nx">appName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;local&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;devnet&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;mainnet&#39;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">walletUrl?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">apiUrl?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nx">options</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="nx">openMode</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;popup&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;tab&#39;</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nx">requestSigningMode</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;popup&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;tab&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// default: &#39;popup&#39;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="nx">redirectUrl?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nx">onAccept</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">provider</span><span class="o">:</span><span class="w"> </span><span class="kt">Provider</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nx">onReject</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nx">onTransactionUpdate</span><span class="o">?:</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="kt">RunTransactionResponse</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">});</span>
+</span></code></pre></div>
+<h4 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>onAccept(provider)</code> is called when user approves via wallet.</li>
+<li><code>onReject()</code> is called when user rejects.</li>
+<li><code>onTransactionUpdate(payload)</code> is called once per transaction with a single payload. It always includes <code>command_id</code> and <code>submission_id</code>. On success it also includes <code>update_id</code> and <code>update_data</code> (ledger transaction tree); on failure it includes <code>status: "failed"</code> and <code>error.error_message</code>.</li>
+<li><code>openMode</code> and <code>redirectUrl</code> configure connection UI behavior.</li>
+<li><code>requestSigningMode</code> controls whether signing/transaction requests open the wallet dashboard automatically after you are connected (<code>'popup'</code> default or <code>'tab'</code>).</li>
+</ul>
+<hr />
+<h3 id="loopconnect"><code>loop.connect()</code><a class="headerlink" href="#loopconnect" title="Permanent link">&para;</a></h3>
+<p>Starts the Loop Connect flow.</p>
+<p>This will:
+1. Validate or clear cached session.
+2. Request a connection ticket from backend. 
+3. Open the wallet UI (popup/tab).
+4. Open a websocket waiting for approval or rejection.
+5. Trigger <code>onAccept(provider)</code> or <code>onReject()</code>.</p>
+<hr />
+<h3 id="loopautoconnect"><code>loop.autoConnect()</code><a class="headerlink" href="#loopautoconnect" title="Permanent link">&para;</a></h3>
+<p>Automatically connect to the wallet and sign user in if an previous sessionis still valid. This flow will happen sitenly and won't show the QR code if user has not login yet. Therefore, this is ideal to run on pageload without disruping the dapp UI/UX.</p>
+<hr />
+<h3 id="looplogout"><code>loop.logout()</code><a class="headerlink" href="#looplogout" title="Permanent link">&para;</a></h3>
+<p>Disconnects the active Connect ticket when possible, clears cached session (localStorage), and resets internal state.</p>
+<hr />
+<h3 id="loopverifysession"><code>loop.verifySession()</code><a class="headerlink" href="#loopverifysession" title="Permanent link">&para;</a></h3>
+<p>Verifies the current cached session with the Loop backend and returns the latest account information.</p>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">loop</span><span class="p">.</span><span class="nx">verifySession</span><span class="p">();</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// session is either null or an object with the current account info</span>
+</span></code></pre></div>
+<hr />
+<h2 id="provider-api">Provider API<a class="headerlink" href="#provider-api" title="Permanent link">&para;</a></h2>
+<p>When the user approves, the SDK returns a Provider instance.</p>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>party_id</code></td>
+<td><code>string</code></td>
+<td>The user's Canton party ID</td>
+</tr>
+<tr>
+<td><code>public_key</code></td>
+<td><code>string</code></td>
+<td>Public key of the wallet</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>User email</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<h4 id="providergetauthtoken-string"><code>provider.getAuthToken(): string</code><a class="headerlink" href="#providergetauthtoken-string" title="Permanent link">&para;</a></h4>
+<p>Returns the auth token used for authenticated backend calls.</p>
+<hr />
+<h4 id="providergetaccount-promiseaccount"><code>provider.getAccount(): Promise&lt;Account&gt;</code><a class="headerlink" href="#providergetaccount-promiseaccount" title="Permanent link">&para;</a></h4>
+<p>Fetches the latest account status for the connected wallet, including utility preapproval admin IDs, merge delegation, and USDC bridge access.</p>
+<hr />
+<h4 id="providergetholding-promiseholding"><code>provider.getHolding(): Promise&lt;Holding[]&gt;</code><a class="headerlink" href="#providergetholding-promiseholding" title="Permanent link">&para;</a></h4>
+<p>Fetches the user's token holdings.</p>
+<hr />
+<h4 id="providergetactivecontracts-templateid-interfaceid-promiseactivecontract"><code>provider.getActiveContracts({ templateId?, interfaceId? }): Promise&lt;ActiveContract[]&gt;</code><a class="headerlink" href="#providergetactivecontracts-templateid-interfaceid-promiseactivecontract" title="Permanent link">&para;</a></h4>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">provider</span><span class="p">.</span><span class="nx">getActiveContracts</span><span class="p">({</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nx">templateId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nx">interfaceId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>Fetches DAML active contracts filtered by template or interface.</p>
+<hr />
+<h4 id="providerestimategaspayload-promiseestimatedgasresponse"><code>provider.estimateGas(payload): Promise&lt;EstimatedGasResponse&gt;</code><a class="headerlink" href="#providerestimategaspayload-promiseestimatedgasresponse" title="Permanent link">&para;</a></h4>
+<p>Returns the estimated network gas for a transaction before submission.</p>
+<hr />
+<h4 id="providersubmittransactioncommand-options-promiseany"><code>provider.submitTransaction(command, options?): Promise&lt;any&gt;</code><a class="headerlink" href="#providersubmittransactioncommand-options-promiseany" title="Permanent link">&para;</a></h4>
+<p>Submits a DAML ExcerciseCommand or multi-command transaction. This is the default async path (no <code>execution_mode</code>). It returns the submission result first (including <code>command_id</code> and <code>submission_id</code>), then the ledger update arrives later via <code>onTransactionUpdate</code> with <code>update_id</code> and <code>update_data</code>. Use <code>estimateTraffic: true</code> in the options to return estimated traffic in the submission response. Use <code>deduplicationPeriod</code> to override the default 1800 second deduplication window.</p>
+<hr />
+<h4 id="providersubmitandwaitfortransactioncommand-options-promiseany"><code>provider.submitAndWaitForTransaction(command, options?): Promise&lt;any&gt;</code><a class="headerlink" href="#providersubmitandwaitfortransactioncommand-options-promiseany" title="Permanent link">&para;</a></h4>
+<p>Submits a DAML ExcerciseCommand or multi-command transaction and waits for the result. This is opt-in and sends <code>execution_mode: "wait"</code> so the wallet uses the execute-and-wait endpoint. The final result arrives as a single <code>onTransactionUpdate</code> payload (command/submission IDs plus update data or failure status). Use <code>deduplicationPeriod</code> to override the default 1800 second deduplication window.</p>
+<p>Note: errors from the wait endpoint do not always mean the transaction failed. A 4xx error (e.g., 400) is a definite failure. A 5xx/timeout can mean the ledger is slow; the transaction may still be committed later, so clients should keep listening for updates rather than assume failure.</p>
+<p>Deduplication: both async execute and execute-and-wait use a 30 minute deduplication window by default. For ambiguous outcomes (for example timeout, disconnect, or 5xx where the previous submission may already have reached Canton), retry within that window with the same payload <code>commandId</code> so the request is idempotent. You can override the window with <code>deduplicationPeriod</code>.</p>
+<hr />
+<h4 id="providertransferrecipient-amount-instrument-options-promiseany"><code>provider.transfer(recipient, amount, instrument?, options?): Promise&lt;any&gt;</code><a class="headerlink" href="#providertransferrecipient-amount-instrument-options-promiseany" title="Permanent link">&para;</a></h4>
+<p>Prepares and submits a token transfer transaction to be signed by the wallet.</p>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">provider</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nx">recipient</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nx">instrument</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">instrument_admin?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">instrument_id?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// default: &#39;Amulet&#39;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nx">options</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nx">requestedAt?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Date</span><span class="p">;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nx">executeBefore?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Date</span><span class="p">;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nx">requestTimeout?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nx">memo?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nx">message?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nx">executionMode</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;async&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;wait&#39;</span><span class="p">;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nx">estimateTraffic?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nx">deduplicationPeriod</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">seconds</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="nx">nanos?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">empty</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">);</span>
+</span></code></pre></div>
+<p>If the wallet popup or tab opened for the request is closed before the wallet responds, the promise rejects with <code>PopupClosedError</code>. Otherwise the existing <code>requestTimeout</code> behavior still applies.</p>
+<hr />
+<h2 id="server-sdk-api">Server SDK API<a class="headerlink" href="#server-sdk-api" title="Permanent link">&para;</a></h2>
+<p>These methods are available from <code>import { loop } from '@fivenorth/loop-sdk/server'</code>.</p>
+<h4 id="loopestimategaspayload-promiseestimatedgasresponse"><code>loop.estimateGas(payload): Promise&lt;EstimatedGasResponse&gt;</code><a class="headerlink" href="#loopestimategaspayload-promiseestimatedgasresponse" title="Permanent link">&para;</a></h4>
+<p>Returns the estimated network gas for a server-side transaction before submission.</p>
+<h4 id="loopcheckduegastrackingid-promisependinggasresponse"><code>loop.checkDueGas(trackingId?): Promise&lt;PendingGasResponse&gt;</code><a class="headerlink" href="#loopcheckduegastrackingid-promisependinggasresponse" title="Permanent link">&para;</a></h4>
+<p>Returns the current pending network gas for the authenticated party. Pass <code>trackingId</code> to inspect a specific pending charge.</p>
+<h4 id="looppaygastrackingid-promiseany"><code>loop.payGas(trackingId): Promise&lt;any&gt;</code><a class="headerlink" href="#looppaygastrackingid-promiseany" title="Permanent link">&para;</a></h4>
+<p>Prepares, signs, and executes the pending gas payment for the specified tracking ID.</p>
+<hr />
+<h4 id="providersignmessagemessage-string-promiseany"><code>provider.signMessage(message: string): Promise&lt;any&gt;</code><a class="headerlink" href="#providersignmessagemessage-string-promiseany" title="Permanent link">&para;</a></h4>
+<p>Requests the wallet to sign an arbitrary message.</p>
+<hr />
+<h2 id="request-lifecycle-hooks">Request lifecycle hooks<a class="headerlink" href="#request-lifecycle-hooks" title="Permanent link">&para;</a></h2>
+<p>Internal request lifecycle hooks allow the SDK core to react to signing and transaction requests. These hooks are internal and not exposed to dApps.</p>
+<h3 id="providerhooks"><code>ProviderHooks</code><a class="headerlink" href="#providerhooks" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">ProviderHooks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nx">onRequestStart</span><span class="o">?:</span><span class="w"> </span><span class="p">(</span><span class="nx">messageType</span><span class="o">:</span><span class="w"> </span><span class="kt">MessageType</span><span class="p">,</span><span class="w"> </span><span class="nx">requestLabel?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">unknown</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nx">onRequestFinish</span><span class="o">?:</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;success&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;rejected&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;timeout&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;error&#39;</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nx">messageType</span><span class="o">:</span><span class="w"> </span><span class="kt">MessageType</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nx">requestLabel?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nx">requestContext?</span><span class="o">:</span><span class="w"> </span><span class="kt">unknown</span><span class="p">;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nx">onTransactionUpdate</span><span class="o">?:</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="kt">RunTransactionResponse</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="nx">onSessionInvalid</span><span class="o">?:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">};</span>
+</span></code></pre></div>
+<p><code>onSessionInvalid</code> is used internally to clear cached Connect state when a WebSocket session can no longer be reconnected or the backend invalidates the ticket. It is not passed through <code>loop.init()</code>.</p>
+<hr />
+<h2 id="public-types">Public Types<a class="headerlink" href="#public-types" title="Permanent link">&para;</a></h2>
+<h3 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Network</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;local&#39;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;devnet&#39;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;mainnet&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nx">party_id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nx">auth_token</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nx">public_key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">email?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nx">has_preapproval?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nx">utility_preapproval_admins?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nx">has_merge_delegation?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nx">usdc_bridge_access</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;not_requested&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;granted&#39;</span><span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">};</span>
+</span></code></pre></div>
+<h3 id="instrumentid">InstrumentId<a class="headerlink" href="#instrumentid" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">InstrumentId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nx">admin</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">};</span>
+</span></code></pre></div>
+<h3 id="holding">Holding<a class="headerlink" href="#holding" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Holding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nx">instrument_id</span><span class="o">:</span><span class="w"> </span><span class="kt">InstrumentId</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nx">decimals</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nx">symbol</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nx">org_name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nx">total_unlocked_coin</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nx">total_locked_coin</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">};</span>
+</span></code></pre></div>
+<h3 id="activecontract">ActiveContract<a class="headerlink" href="#activecontract" title="Permanent link">&para;</a></h3>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">ActiveContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nx">template_id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nx">contract_id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="p">[</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="p">;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">};</span>
+</span></code></pre></div>
+<hr />
+<h2 id="internal-code-path">Internal Code Path<a class="headerlink" href="#internal-code-path" title="Permanent link">&para;</a></h2>
+<h3 id="1-init">1. Init<a class="headerlink" href="#1-init" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Saves config</li>
+<li>Resolves wallet/api URL from network or overrides</li>
+<li>Set up session cache</li>
+</ul>
+<h3 id="2-connect-flow">2. Connect Flow<a class="headerlink" href="#2-connect-flow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Validates or clears cached session</li>
+<li>Requests a ticket (<code>POST /api/v1/.connect/ticket</code>)</li>
+<li>Opens wallet using:
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/api/v1/.connect/?ticketId=xxxx
+</span></code></pre></div></li>
+<li>Opens websocket:
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ws://.../.connect/pair/ws/:ticketId
+</span></code></pre></div></li>
+</ol>
+<h3 id="3-approval-rejection">3. Approval / Rejection<a class="headerlink" href="#3-approval-rejection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>On approve -&gt; backend sends a <code>handshake_accept</code> event
+  Provider is constructed.</li>
+</ul>
+<h3 id="4-session-validation">4. Session Validation<a class="headerlink" href="#4-session-validation" title="Permanent link">&para;</a></h3>
+<p>Before reconnecting, SDK verifies session via:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>GET /api/v1/profile
+</span></code></pre></div>
+<p>If invalid, -&gt; session cache is cleared automatically.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+  
+
+
+<footer class="fn-footer fn-t" role="contentinfo">
+  <div class="fn-footer__inner">
+    <div class="fn-footer__top">
+      <a href="../.." class="fn-logo-link" aria-label="Five North — home">
+        <div class="fn-logo-img fn-logo fn-icon"
+             style="background-image: url(../../assets/fn/footer-logo.svg);"></div>
+      </a>
+
+      <div class="fn-footer__links">
+        
+          <a href="https://www.fivenorthdigital.com/" class="fn-footer__link fn-t"
+             target="_blank" rel="noopener noreferrer">About</a>
+        
+          <a href="https://www.fivenorthdigital.com/for-developers" class="fn-footer__link fn-t"
+             target="_blank" rel="noopener noreferrer">Contact</a>
+        
+      </div>
+    </div>
+
+    <div class="fn-footer__bottom fn-t">
+      <div class="fn-footer__copyright fn-t">
+        Copyright © 2026 Five North Group
+      </div>
+
+      
+      <div class="fn-theme-pill" role="group" aria-label="Color theme">
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="system" aria-label="System theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </button>
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="light" aria-label="Light theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="dark" aria-label="Dark theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tabs", "navigation.tabs.sticky", "announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.sections", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/fn-theme.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

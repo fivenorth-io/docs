@@ -1,0 +1,2373 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Foundational infrastructure documentation for decentralized financial networks — Five North Group.">
+      
+      
+        <meta name="author" content="Five North Group">
+      
+      
+        <link rel="canonical" href="https://www.fivenorthgroup.com/loop-sdk/release/">
+      
+      
+        <link rel="prev" href="../api-reference/">
+      
+      
+        <link rel="next" href="../../id-sdk/introduction/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Release - Operating Documents</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter Tight";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/fn-tokens.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/fn-layout.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  
+
+  
+  
+  
+  
+  
+
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Operating Documents">
+  <meta property="og:title"       content="Release — Operating Documents">
+  <meta property="og:description" content="Foundational infrastructure documentation for decentralized financial networks — Five North Group.">
+  <meta property="og:url"         content="https://www.fivenorthgroup.com/loop-sdk/release/">
+  <meta property="og:image"       content="https://www.fivenorthgroup.com/assets/social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"   content="Operating Documents">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Release — Operating Documents">
+  <meta name="twitter:description" content="Foundational infrastructure documentation for decentralized financial networks — Five North Group.">
+  <meta name="twitter:image"       content="https://www.fivenorthgroup.com/assets/social.png">
+  <meta name="twitter:image:alt"   content="Operating Documents">
+
+  <script>
+    (function () {
+      try {
+        var v = localStorage.getItem('fn-theme');
+        var theme = (v === 'light' || v === 'dark' || v === 'system') ? v : 'system';
+        var resolved = theme === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : theme;
+        var scheme = resolved === 'light' ? 'default' : 'slate';
+        document.documentElement.setAttribute('data-md-color-scheme', scheme);
+      } catch (_) {
+        document.documentElement.setAttribute('data-md-color-scheme', 'slate');
+      }
+    })();
+  </script>
+
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#loop-sdk-release-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  
+                
+
+                
+                <header class="fn-header__brand fn-t" role="banner">
+                    <div class="fn-header__brand-inner">
+                        <a href="../.." class="fn-logo-link" aria-label="Five North — home">
+                            <div class="fn-logo-img fn-logo fn-icon"
+                                style="background-image: url(../../assets/fn/logo.svg);"></div>
+                        </a>
+                        
+                        <div class="fn-mobile-controls">
+                            <button type="button" class="fn-mobile-search-btn" data-fn-search-toggle aria-label="Search"
+                                aria-expanded="false">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.35-4.35" />
+                                </svg>
+                            </button>
+                            <button type="button" class="fn-hamburger fn-hamburger--brand" data-fn-hamburger
+                                aria-label="Toggle menu" aria-expanded="false">
+                                <span class="fn-hamburger-line"></span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                
+                    <header class="fn-header__sticky fn-t" data-fn-sticky-bar data-md-component="header"
+                        role="navigation" aria-label="Primary">
+                        
+                        <label for="__search" style="display:none" aria-hidden="true"></label>
+                        <div class="fn-header__sticky-inner">
+                            <nav class="fn-tabnav" aria-label="Sections">
+                                
+                                <a href="../.." class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">Home</div>
+                                </a>
+                                
+                                <a href="../../5n-infra/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">5N Infra</div>
+                                </a>
+                                
+                                <a href="../../5n-dashboard/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">5N Dashboard</div>
+                                </a>
+                                
+                                <a href="../overview/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">Loop SDK</div>
+                                </a>
+                                
+                                <a href="../../id-sdk/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">ID SDK</div>
+                                </a>
+                                
+                                <a href="../../5n-timemachine/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">5N Time Machine</div>
+                                </a>
+                                
+                                <a href="../../security/introduction/" class="fn-tab fn-t" data-fn-tab >
+                                    <div class="fn-tab__label">Security</div>
+                                </a>
+                                
+                            </nav>
+                            <div class="fn-header__right">
+                                
+                            </div>
+                        </div>
+                    </header>
+
+                    
+                    <div class="fn-search-wrap fn-t" data-fn-search-wrap>
+                        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                    </div>
+
+                    
+                    <div class="fn-mobile-nav" data-fn-mobile-nav>
+                        <div>
+                            <div class="fn-mobile-nav__list">
+                                
+                                <a href="../.." class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    Home
+                                </a>
+                                
+                                <a href="../../5n-infra/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    5N Infra
+                                </a>
+                                
+                                <a href="../../5n-dashboard/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    5N Dashboard
+                                </a>
+                                
+                                <a href="../overview/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    Loop SDK
+                                </a>
+                                
+                                <a href="../../id-sdk/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    ID SDK
+                                </a>
+                                
+                                <a href="../../5n-timemachine/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    5N Time Machine
+                                </a>
+                                
+                                <a href="../../security/introduction/" class="fn-mobile-nav__link fn-t" data-fn-tab >
+                                    Security
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Operating Documents" class="md-nav__button md-logo" aria-label="Operating Documents" data-md-component="logo">
+      
+  <img src="../../assets/logo_infrastructure_for-dark-bg.svg" alt="logo">
+
+    </a>
+    Operating Documents
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../5n-infra/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    5N Infra
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            5N Infra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosted-node/hosted-node-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosted Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sandbox/sandbox-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sandbox
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sponsor
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sponsor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsored-node/check-ip-allow-status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IP Restriction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsored-node/network-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network Param
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    5N Dashboard
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            5N Dashboard
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/dar-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAR management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/party-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Party Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-dashboard/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Loop SDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Loop SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Server API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Release
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0132" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.13.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0131" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.13.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0130" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.13.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0125" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0124" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0123" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0122" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0121" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0120" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0112" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.11.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0111" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.11.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0110" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.11.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0100" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.10.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v090" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.9.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v080" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.8.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v076" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.6
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v075" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v074" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v073" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v072" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v071" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v070" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v065" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v064" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v063" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v062" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v061" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v060" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v050" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.5.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v040" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.4.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v030" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.3.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v021" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.2.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v020" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.2.0
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ID SDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ID SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/sdk-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../id-sdk/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    5N Time Machine
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5N Time Machine
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-timemachine/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5n-timemachine/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0132" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.13.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0131" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.13.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0130" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.13.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0125" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0124" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0123" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0122" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0121" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0120" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.12.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0112" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.11.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0111" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.11.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0110" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.11.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0100" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.10.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v090" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.9.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v080" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.8.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v076" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.6
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v075" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v074" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v073" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v072" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v071" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v070" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.7.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v065" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v064" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v063" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v062" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v061" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v060" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.6.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v050" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.5.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v040" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.4.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v030" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.3.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v021" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.2.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v020" class="md-nav__link">
+    <span class="md-ellipsis">
+      v0.2.0
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="loop-sdk-release-notes">Loop SDK – Release Notes<a class="headerlink" href="#loop-sdk-release-notes" title="Permanent link">&para;</a></h1>
+<h2 id="release-resources">Release Resources<a class="headerlink" href="#release-resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>NPM Package:</strong> <a href="https://www.npmjs.com/package/@fivenorth/loop-sdk"><code>@fivenorth/loop-sdk</code></a></li>
+<li><strong>Full Changelog:</strong> <a href="https://www.github.com/fivenorth-io/loop-sdk/blob/main/CHANGELOG.md"><code>CHANGELOG</code></a></li>
+</ul>
+<p>The release notes below highlight only the major updates. Refer to the links above for the complete changelog.</p>
+<h2 id="v0132">v0.13.2<a class="headerlink" href="#v0132" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Connect: backend compatibility for SDK versions that open the ticket WebSocket with only <code>ticket_id</code> is being removed. Integrators should use <code>@fivenorth/loop-sdk@0.13.1</code> or later before backend enforcement is enabled.</li>
+<li>Connect: handle backend ticket status messages for expired, rejected, revoked, or invalid Connect tickets.</li>
+<li>Connect: clear stale local sessions and reject pending requests when the WebSocket session is no longer valid.</li>
+</ul>
+<h2 id="v0131">v0.13.1<a class="headerlink" href="#v0131" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: clear stale cached Connect sessions when the server reports the ticket as invalid, expired, revoked, or missing.</li>
+</ul>
+<h2 id="v0130">v0.13.0<a class="headerlink" href="#v0130" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Connect: store the ticket auth token separately from the Connect API auth token and use it when opening/reconnecting the ticket websocket.</li>
+<li>Connect: replace ticket revoke behavior with ticket disconnect on <code>loop.logout()</code>.</li>
+<li>Server SDK: remove client-side <code>session_id</code> from Server SDK authentication/session state.</li>
+</ul>
+<h2 id="v0125">v0.12.5<a class="headerlink" href="#v0125" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: expose <code>utility_preapproval_admins</code> on <code>Account</code> so dApps can inspect which utility admins have preapproval for the connected wallet.</li>
+</ul>
+<h2 id="v0124">v0.12.4<a class="headerlink" href="#v0124" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: broadcast a reject message over the websocket when the wallet popup/tab is closed so the backend can invalidate the pending request.</li>
+</ul>
+<h2 id="v0123">v0.12.3<a class="headerlink" href="#v0123" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: detect when the wallet popup/tab is closed during a pending request and reject with <code>PopupClosedError</code> instead of waiting only for timeout.</li>
+</ul>
+<h2 id="v0122">v0.12.2<a class="headerlink" href="#v0122" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Browser SDK: add <code>provider.estimateGas(payload)</code> so browser / WalletConnect dApps can inspect expected network gas before submission.</li>
+<li>SDK: add optional <code>deduplicationPeriod</code> support to <code>submitTransaction</code>, <code>submitAndWaitForTransaction</code>, and <code>transfer</code>.</li>
+<li>SDK: continue accepting caller-provided <code>commandId</code> on the transaction payload so integrators can safely retry the same logical command.</li>
+<li>Server SDK: fix the <code>node-forge</code> import path used by the server signer.</li>
+</ul>
+<h2 id="v0121">v0.12.1<a class="headerlink" href="#v0121" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Server SDK: add <code>estimateGas(payload)</code> so integrators can inspect expected network gas before submitting a transaction.</li>
+</ul>
+<h2 id="v0120">v0.12.0<a class="headerlink" href="#v0120" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Upgrade required for Server SDK: integrators should update to <code>@fivenorth/loop-sdk@0.12.0</code> or later to support the new after-execution network gas flow.</li>
+<li>Server SDK transactions now use an after-execution network gas model. If a previous transaction created unpaid network gas, the next transaction attempt may fail with <code>PaymentRequiredError</code>.</li>
+<li>Add <code>checkDueGas(trackingId?)</code> and <code>payGas(trackingId)</code> helpers so integrators can check for pending network gas before submitting a transaction and pay it first if present.</li>
+<li>Surface <code>402 Payment Required</code> as <code>PaymentRequiredError</code> as a fallback when unpaid network gas is detected during submission.</li>
+</ul>
+<h2 id="v0112">v0.11.2<a class="headerlink" href="#v0112" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: stop auto-closing request-signing popup/tab on request completion (wallet UI controls close behavior).</li>
+<li>SDK: include wallet reject <code>message</code> and <code>code</code> in <code>RejectRequestError</code>.</li>
+</ul>
+<h2 id="v0111">v0.11.1<a class="headerlink" href="#v0111" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: fix server-side SDK to not bundling and just compile TS -&gt; JS</li>
+</ul>
+<h2 id="v0110">v0.11.0<a class="headerlink" href="#v0110" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SDK: add server-side signing entrypoint. Backend authenticates with the user's private key, prepares a transaction, signs the returned hash, and submits without a wallet popup (headless flow).</li>
+<li>Demo: add server demo (<code>demo/server.ts</code>) showing end-to-end headless signing.</li>
+<li>Breaking: <code>TransactionPayload</code> no longer includes <code>execution_mode</code> or <code>estimate_traffic</code>. Use <code>submitTransaction</code> options (<code>executionMode</code>, <code>estimateTraffic</code>) instead.</li>
+<li>Docs: clarify server SDK custody requirements and add headless usage examples.</li>
+</ul>
+<h2 id="v0100">v0.10.0<a class="headerlink" href="#v0100" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add <code>memo</code> to the transfer helper payload and store it as transfer metadata.</li>
+<li>Add <code>estimateTraffic</code> option to return estimated traffic in submit responses.</li>
+<li>Docs: add installed DAR versions list for Canton nodes.</li>
+</ul>
+<h2 id="v090">v0.9.0<a class="headerlink" href="#v090" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add execute-and-wait connect execution path (selectable via options) that returns transaction results or failures immediately for dapp integrations.</li>
+</ul>
+<h2 id="v080">v0.8.0<a class="headerlink" href="#v080" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>onTransactionUpdate</code> now returns <code>update_id</code> and <code>update_data</code> in the update payload.
+  <code>update_data</code> is the ledger transaction tree (includes <code>eventsById</code>, <code>workflowId</code>, <code>effectiveAt</code>, etc.).</li>
+</ul>
+<h2 id="v076">v0.7.6<a class="headerlink" href="#v076" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add <code>getConnectUrl</code> method to get link to wallet connect.</li>
+</ul>
+<h2 id="v075">v0.7.5<a class="headerlink" href="#v075" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fix not able to re-connect when aborting a connection half way without complete the handshake.</li>
+</ul>
+<h2 id="v074">v0.7.4<a class="headerlink" href="#v074" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Improve style of the Loop connect modal.</li>
+<li>Fix bug connect modal not showing up when calling <code>connect</code> again after hiding it and resume the connect flow.</li>
+</ul>
+<h2 id="v073">v0.7.3<a class="headerlink" href="#v073" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add <code>autoConnect</code> and <code>logout</code> methods to enhance user experience on auto login on page load and control wallet logout flow</li>
+</ul>
+<h2 id="v072">v0.7.2<a class="headerlink" href="#v072" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Expose <code>has_preapproval</code>, <code>has_merge_delegation</code> and <code>usdc_bridge_access</code> to account object for dapp to check and ensure an account is setup to avoid UTXO size growing up.</li>
+<li>Add a new method <code>getAccount</code> on provider to allow dapp to refresh these status.</li>
+</ul>
+<h2 id="v071">v0.7.1<a class="headerlink" href="#v071" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Custom wallet prompt message: pass <code>message</code> to transactions to show dApp-provided text in the wallet UI.</li>
+<li>Add optional <code>requestSigningMode</code> (defaults to <code>'popup'</code>) to auto-open wallet dashboard (popup/tab) for signing/transaction requests and auto-close the popup when the wallet responds.</li>
+<li>Add internal request lifecycle hooks on <code>Provider</code> to allow the SDK core to react to signing and transaction requests.</li>
+</ul>
+<h2 id="v070">v0.7.0<a class="headerlink" href="#v070" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Auto-reconnect websocket before sending requests to reduce <code>Not connected</code> errors after idle timeouts.</li>
+<li>Add USDC withdraw helper: <code>wallet.extension.usdcBridge.withdrawalUSDCxToEthereum</code> (with <code>withdraw</code> alias), move USDC types/logic under the extension, and update the demo helper UI.</li>
+</ul>
+<h2 id="v065">v0.6.5<a class="headerlink" href="#v065" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Adjust <code>HANDSHAKE_REJECT</code> behavior so popup closing is fully controlled by the Wallet Connect UI.</li>
+</ul>
+<h2 id="v064">v0.6.4<a class="headerlink" href="#v064" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added per-transfer <code>requestTimeout</code> option (defaults to 5 minutes), exported <code>DEFAULT_REQUEST_TIMEOUT_MS</code>, and updated demo UI to accept a timeout value.</li>
+</ul>
+<h2 id="v063">v0.6.3<a class="headerlink" href="#v063" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added embedded CodePen demo to the docs under the Demo section for interactive examples.</li>
+</ul>
+<h2 id="v062">v0.6.2<a class="headerlink" href="#v062" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Version bump release; package metadata updated to 0.6.2.</li>
+</ul>
+<h2 id="v061">v0.6.1<a class="headerlink" href="#v061" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Increased wallet request/transaction timeout to 5 minutes.</li>
+<li>Display instrument admin info when fetching holdings.</li>
+<li>Docs moved under the <code>loop-sdk</code> package directory.</li>
+</ul>
+<h2 id="v060">v0.6.0<a class="headerlink" href="#v060" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added <code>loop.wallet.transfer</code> helper that builds and submits transfers (optional instrument admin/id overrides).</li>
+<li>Demo updated with transfer UI fields.</li>
+</ul>
+<h2 id="v050">v0.5.0<a class="headerlink" href="#v050" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added <code>id</code>/<code>class</code> to the overlay container and wrapped QR/link in a content div for easier styling/hooks.</li>
+</ul>
+<h2 id="v040">v0.4.0<a class="headerlink" href="#v040" title="Permanent link">&para;</a></h2>
+<ul>
+<li>BREAKING: <code>openMode</code> and <code>redirectUrl</code> now live under the <code>options</code> object in <code>loop.init()</code>.</li>
+<li>Added <code>email</code> to <code>verifySession()</code> response by extending the <code>Account</code> return type.</li>
+<li>Added UUID polyfill fallback for environments without <code>crypto.randomUUID</code>.</li>
+</ul>
+<h2 id="v030">v0.3.0<a class="headerlink" href="#v030" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added popup-based wallet connect flow and auto-close after acceptance.</li>
+</ul>
+<h2 id="v021">v0.2.1<a class="headerlink" href="#v021" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Cleared invalid cached <code>loop_connect</code> session when ticket is missing/expired to prevent stale reconnect errors.</li>
+</ul>
+<h2 id="v020">v0.2.0<a class="headerlink" href="#v020" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Added <code>email</code> to <code>handshake_accept</code> payload and exposed <code>provider.email</code> to dApps.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+  
+
+
+<footer class="fn-footer fn-t" role="contentinfo">
+  <div class="fn-footer__inner">
+    <div class="fn-footer__top">
+      <a href="../.." class="fn-logo-link" aria-label="Five North — home">
+        <div class="fn-logo-img fn-logo fn-icon"
+             style="background-image: url(../../assets/fn/footer-logo.svg);"></div>
+      </a>
+
+      <div class="fn-footer__links">
+        
+          <a href="https://www.fivenorthdigital.com/" class="fn-footer__link fn-t"
+             target="_blank" rel="noopener noreferrer">About</a>
+        
+          <a href="https://www.fivenorthdigital.com/for-developers" class="fn-footer__link fn-t"
+             target="_blank" rel="noopener noreferrer">Contact</a>
+        
+      </div>
+    </div>
+
+    <div class="fn-footer__bottom fn-t">
+      <div class="fn-footer__copyright fn-t">
+        Copyright © 2026 Five North Group
+      </div>
+
+      
+      <div class="fn-theme-pill" role="group" aria-label="Color theme">
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="system" aria-label="System theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </button>
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="light" aria-label="Light theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+        <button type="button" class="fn-theme-pill__btn"
+                data-fn-theme-opt="dark" aria-label="Dark theme">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tabs", "navigation.tabs.sticky", "announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.sections", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/fn-theme.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
