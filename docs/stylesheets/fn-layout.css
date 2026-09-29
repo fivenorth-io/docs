@@ -141,8 +141,7 @@ body {
 
 .fn-logo-img {
   display: block;
-  height: 32px;
-  width: 132px;
+  height: 36px;
   max-width: 100%;
   background-image: url("../assets/fn/logo.svg");
   background-position: center;
