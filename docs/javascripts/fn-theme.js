@@ -261,86 +261,6 @@
     });
   }
 
-  /* ═════════════════ Hero grid animation ═════════════════ */
-
-  const GRID_CELLS = [
-    { col: 2, row: 6, color: '#D3D8F3', order: 7, drop: 0  },
-    { col: 4, row: 6, color: 'white',              drop: 1  },
-    { col: 6, row: 6, color: '#E4DCF9', order: 8, drop: 2  },
-    { col: 1, row: 5, color: 'white',              drop: 3  },
-    { col: 3, row: 5, color: 'white',              drop: 4  },
-    { col: 5, row: 5, color: '#D5F4FE', order: 6, drop: 5  },
-    { col: 4, row: 4, color: '#CAEEC8', order: 4, drop: 6  },
-    { col: 6, row: 4, color: '#D3D8F3', order: 5, drop: 7  },
-    { col: 3, row: 3, color: '#F2FF96', order: 3, drop: 8  },
-    { col: 5, row: 3, color: 'white',              drop: 9  },
-    { col: 7, row: 3, color: 'white',              drop: 10 },
-    { col: 4, row: 2, color: '#E4DCF9', order: 1, drop: 11 },
-    { col: 6, row: 2, color: '#D5F4FE', order: 2, drop: 12 },
-    { col: 5, row: 1, color: 'white',              drop: 13 },
-    { col: 7, row: 1, color: '#CAEEC8', order: 0, drop: 14 },
-  ];
-
-  const PHASE_DURATION = { drop: 3000, blink: 10000, fadeout: 1000, pause: 600 };
-  const NEXT_PHASE     = { drop: 'blink', blink: 'fadeout', fadeout: 'pause', pause: 'drop' };
-
-  let heroTimer = null;
-
-  function buildHeroGrid(container) {
-    container.innerHTML = '';
-    GRID_CELLS.forEach(function (cell) {
-      const el = document.createElement('div');
-      const isColored = cell.order != null;
-      el.className = 'fn-grid-cell' + (isColored ? ' fn-grid-cell-active' : '');
-      el.style.gridColumn = String(cell.col);
-      el.style.gridRow    = String(cell.row);
-      el.style.setProperty('--cell-color',
-        isColored ? cell.color : 'var(--fn-surface-raised)');
-      el.style.setProperty('--drop-i', String(cell.drop));
-      if (isColored) el.style.setProperty('--cell-i', String(cell.order));
-      container.appendChild(el);
-    });
-  }
-
-  function runHero(container) {
-    buildHeroGrid(container);
-    let phase = 'drop';
-    container.className = 'fn-hero-grid fn-phase-' + phase;
-    (function step() {
-      heroTimer = setTimeout(function () {
-        phase = NEXT_PHASE[phase];
-        container.className = 'fn-hero-grid fn-phase-' + phase;
-        if (phase === 'drop') buildHeroGrid(container);
-        step();
-      }, PHASE_DURATION[phase]);
-    })();
-  }
-
-  function initHero() {
-    if (heroTimer) { clearTimeout(heroTimer); heroTimer = null; }
-    const container = document.querySelector('[data-fn-hero-grid]');
-    const containerMobile = document.querySelector('[data-fn-hero-grid-mobile]');
-    if (!container && !containerMobile) return;
-    /* Run a single shared phase loop; both grids mirror each other */
-    let phase = 'drop';
-    function buildBoth() {
-      if (container)       buildHeroGrid(container);
-      if (containerMobile) buildHeroGrid(containerMobile);
-    }
-    buildBoth();
-    if (container)       container.className       = 'fn-hero-grid fn-phase-' + phase;
-    if (containerMobile) containerMobile.className = 'fn-hero-grid fn-phase-' + phase;
-    (function step() {
-      heroTimer = setTimeout(function () {
-        phase = NEXT_PHASE[phase];
-        if (container)       container.className       = 'fn-hero-grid fn-phase-' + phase;
-        if (containerMobile) containerMobile.className = 'fn-hero-grid fn-phase-' + phase;
-        if (phase === 'drop') buildBoth();
-        step();
-      }, PHASE_DURATION[phase]);
-    })();
-  }
-
   /* ═════════════════ Sticky-bar "stuck" detection ═════════════
      The action bar (tabs + search) uses `position: sticky; top: 0`.
      To show a subtle divider ONLY when it's actually pinned to the
@@ -463,7 +383,6 @@
     bindThemeButtons();
     bindHamburgerButtons();
     bindSearchToggleButtons();
-    initHero();
     initStickyBar();
     initDesktopSearchShortcut();
   }

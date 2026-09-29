@@ -8,9 +8,9 @@
 
 /* ── Primitive tokens (constant, theme-independent) ────────── */
 :root {
-  --fn-accent:        #407AEF;
-  --fn-accent-muted:  rgba(64, 122, 239, 0.35);
-  --fn-accent-glow:   rgba(64, 122, 239, 0.15);
+  --fn-accent:        #0D5EAF;
+  --fn-accent-muted:  rgba(13, 94, 175, 0.35);
+  --fn-accent-glow:   rgba(13, 94, 175, 0.15);
 
   --fn-radius-md:     8px;
 
@@ -31,58 +31,65 @@
 
 /* ── Semantic tokens · Light (Material "default") ──────────── */
 [data-md-color-scheme="default"] {
-  --fn-surface:         #FFFFFF;
-  --fn-surface-raised:  #F9FAFB;
-  --fn-surface-overlay: rgba(255, 255, 255, 0.8);
-  --fn-surface-inset:   #F3F4F6;
-  --fn-surface-section: #F9FAFB;
+  --fn-surface:         #ECEBE9;
+  --fn-surface-raised:  #F7F6F5;
+  --fn-surface-overlay: rgba(236, 235, 233, 0.8);
+  --fn-surface-inset:   #E2E1DE;
+  --fn-surface-section: #ECEBE9;
 
-  --fn-fg:              #111827;
-  --fn-fg-secondary:    #6B7280;
-  --fn-fg-muted:        #9CA3AF;
+  --fn-fg:              #181716;
+  --fn-fg-secondary:    #67696F;
+  --fn-fg-muted:        #8E9097;
 
-  --fn-line:            #E5E7EB;
-  --fn-line-muted:      #E5E7EB;
-  --fn-line-divider:    #D1D5DB;
-
-  --fn-grid-line:       #C9CDD4;
-
-  --fn-cell-idle:              0.35;
-  --fn-cell-idle-active:       0.45;
-  --fn-cell-filter-idle:       saturate(1) brightness(1);
-  --fn-cell-filter-glow:       saturate(1.1) brightness(0.93);
-  --fn-cell-halo-blur:         22px;
-  --fn-cell-halo-spread:       3px;
-  --fn-cell-halo-strength:     65%;
+  --fn-line:            #D4D3D1;
+  --fn-line-muted:      #D4D3D1;
+  --fn-line-divider:    #C4C3C0;
 
   --fn-logo-filter:     brightness(0);
+
+  --md-default-bg-color:          #ECEBE9;
+  --md-default-bg-color--light:   rgba(236, 235, 233, 0.7);
+  --md-default-bg-color--lighter: rgba(236, 235, 233, 0.3);
+  --md-default-bg-color--lightest:rgba(236, 235, 233, 0.12);
+
+  --md-default-fg-color:          #181716;
+  --md-default-fg-color--light:   #67696F;
+  --md-default-fg-color--lighter: #8E9097;
+  --md-default-fg-color--lightest:#C4C3C0;
+
+  --md-primary-fg-color:          #0D5EAF;
+  --md-primary-bg-color:          #ECEBE9;
+  --md-accent-fg-color:           #0D5EAF;
+  --md-accent-bg-color:           #ECEBE9;
+
+  --md-typeset-color:             #181716;
+  --md-typeset-a-color:           #0D5EAF;
+  --md-typeset-mark-color:        rgba(13, 94, 175, 0.28);
+
+  --md-code-hl-color:             rgba(13, 94, 175, 0.3);
+
+  --md-footer-fg-color:           #181716;
+  --md-footer-fg-color--light:    #67696F;
+  --md-footer-fg-color--lighter:  #8E9097;
+  --md-footer-bg-color:           #ECEBE9;
+  --md-footer-bg-color--dark:     #E2E1DE;
 }
 
 /* ── Semantic tokens · Dark (Material "slate") ─────────────── */
 [data-md-color-scheme="slate"] {
-  --fn-surface:         #111113;
-  --fn-surface-raised:  #141517;
-  --fn-surface-overlay: rgba(17, 17, 19, 0.8);
-  --fn-surface-inset:   #1B1B1D;
-  --fn-surface-section: #111113;
+  --fn-surface:         #181716;
+  --fn-surface-raised:  #222120;
+  --fn-surface-overlay: rgba(24, 23, 22, 0.8);
+  --fn-surface-inset:   #2C2B29;
+  --fn-surface-section: #181716;
 
-  --fn-fg:              #F8FAFC;
-  --fn-fg-secondary:    #94A3B8;
-  --fn-fg-muted:        #666666;
+  --fn-fg:              #ECEBE9;
+  --fn-fg-secondary:    #8E9097;
+  --fn-fg-muted:        #67696F;
 
-  --fn-line:            #21242B;
-  --fn-line-muted:      #191B21;
-  --fn-line-divider:    #272626;
-
-  --fn-grid-line:       #21242B;
-
-  --fn-cell-idle:              0.08;
-  --fn-cell-idle-active:       0.15;
-  --fn-cell-filter-idle:       saturate(1) brightness(1);
-  --fn-cell-filter-glow:       saturate(1) brightness(1);
-  --fn-cell-halo-blur:         10px;
-  --fn-cell-halo-spread:       1px;
-  --fn-cell-halo-strength:     30%;
+  --fn-line:            #2E2D2C;
+  --fn-line-muted:      #242322;
+  --fn-line-divider:    #3A3937;
 
   --fn-logo-filter:     none;
 
@@ -93,39 +100,39 @@
      sticky bars (.md-nav__title), admonitions, code blocks, etc.
      keep their default LIGHT values and bleed through in dark mode
      (the "white streak" at the top of the sidebars). */
-  --md-default-bg-color:         #111113;
-  --md-default-bg-color--light:  rgba(17, 17, 19, 0.7);
-  --md-default-bg-color--lighter:rgba(17, 17, 19, 0.3);
-  --md-default-bg-color--lightest:rgba(17, 17, 19, 0.12);
+  --md-default-bg-color:         #181716;
+  --md-default-bg-color--light:  rgba(24, 23, 22, 0.7);
+  --md-default-bg-color--lighter:rgba(24, 23, 22, 0.3);
+  --md-default-bg-color--lightest:rgba(24, 23, 22, 0.12);
 
-  --md-default-fg-color:         #F8FAFC;
-  --md-default-fg-color--light:  #94A3B8;
-  --md-default-fg-color--lighter:#666666;
-  --md-default-fg-color--lightest:#2E333C;
+  --md-default-fg-color:         #ECEBE9;
+  --md-default-fg-color--light:  #8E9097;
+  --md-default-fg-color--lighter:#67696F;
+  --md-default-fg-color--lightest:#3A3937;
 
-  --md-primary-fg-color:         #407AEF;
-  --md-primary-bg-color:         #F8FAFC;
-  --md-accent-fg-color:          #407AEF;
-  --md-accent-bg-color:          #F8FAFC;
+  --md-primary-fg-color:         #0D5EAF;
+  --md-primary-bg-color:         #ECEBE9;
+  --md-accent-fg-color:          #0D5EAF;
+  --md-accent-bg-color:          #ECEBE9;
 
-  --md-typeset-color:            #F8FAFC;
-  --md-typeset-a-color:          #407AEF;
-  --md-typeset-table-color:      rgba(255, 255, 255, 0.12);
-  --md-typeset-table-color--light:rgba(255, 255, 255, 0.035);
-  --md-typeset-mark-color:       rgba(64, 122, 239, 0.28);
+  --md-typeset-color:            #ECEBE9;
+  --md-typeset-a-color:          #0D5EAF;
+  --md-typeset-table-color:      rgba(236, 235, 233, 0.12);
+  --md-typeset-table-color--light:rgba(236, 235, 233, 0.035);
+  --md-typeset-mark-color:       rgba(13, 94, 175, 0.28);
 
-  --md-code-fg-color:            #E2E8F0;
-  --md-code-bg-color:            #1B1B1D;
-  --md-code-hl-color:            rgba(64, 122, 239, 0.3);
+  --md-code-fg-color:            #ECEBE9;
+  --md-code-bg-color:            #222120;
+  --md-code-hl-color:            rgba(13, 94, 175, 0.3);
 
-  --md-admonition-fg-color:      #F8FAFC;
-  --md-admonition-bg-color:      #141517;
+  --md-admonition-fg-color:      #ECEBE9;
+  --md-admonition-bg-color:      #222120;
 
-  --md-footer-fg-color:          #F8FAFC;
-  --md-footer-fg-color--light:   #94A3B8;
-  --md-footer-fg-color--lighter: #666666;
-  --md-footer-bg-color:          #111113;
-  --md-footer-bg-color--dark:    #0A0A0C;
+  --md-footer-fg-color:          #ECEBE9;
+  --md-footer-fg-color--light:   #8E9097;
+  --md-footer-fg-color--lighter: #67696F;
+  --md-footer-bg-color:          #181716;
+  --md-footer-bg-color--dark:    #121110;
 }
 
 /* ── Global element smoothing ──────────────────────────────── */

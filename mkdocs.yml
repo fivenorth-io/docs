@@ -1,5 +1,5 @@
 site_name: Operating Documents
-site_url: https://www.fivenorthgroup.com/
+site_url: https://fivenorth.io
 site_description: "Foundational infrastructure documentation for decentralized financial networks — Five North Group."
 site_author: "Five North Group"
 
@@ -81,7 +81,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
-copyright: Copyright &copy; 2025 Five North Group
+copyright: Copyright &copy; 2026 Five North Group
 
 nav:
   - Home: index.md
