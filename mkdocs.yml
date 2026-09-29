@@ -21,7 +21,7 @@ theme:
     text: Inter Tight
     code: Red Hat Mono
   logo: assets/logo_infrastructure_for-dark-bg.svg
-  favicon: assets/favicon.jpg
+  favicon: assets/favicon/favicon.ico
   features:
     - navigation.footer
     - navigation.tabs

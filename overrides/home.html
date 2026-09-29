@@ -22,9 +22,6 @@
   {
     'id': '5n-infra',
     'title': '5N Infra',
-    'icon_bg': '#042A77',
-    'icon_url': 'assets/fn/icon-5n-infra.png',
-    'icon_class': 'fn-card__icon--5n-infra',
     'is_img': true,
     'description': '5N provides hosted node service where we can operate operator for you. Contact nodesupport@fivenorth.io for detail.',
     'docs_url': '5n-infra/'
@@ -32,37 +29,20 @@
   {
     'id': '5n-dashboard',
     'title': '5N Dashboard',
-    'icon_bg': '#E4DCF9',
-    'icon_url': 'assets/fn/icon-5n-dashboard.svg',
-    'icon_class': 'fn-card__icon--5n-dashboard',
     'description': 'The goal of the 5N Dashboard is to give developers and administrators the tools needed to effectively deploy, monitor, maintain, and back up both the node and their Canton‑based applications.',
     'docs_url': '5n-dashboard/introduction/'
   },
   {
     'id': '5n-time-machine',
     'title': '5N Time Machine',
-    'icon_bg': '#F0FCF0',
-    'icon_url': 'assets/fn/icon-5n-time-machine.svg',
-    'icon_class': 'fn-card__icon--5n-time-machine',
     'description': '5N Time Machine subscribes to your ledger, gets all the updates, and saves them into a Postgres database in a schema called time_machine.',
     'docs_url': '5n-timemachine/introduction/'
   },
   {
     'id': 'security',
     'title': 'Security',
-    'icon_bg': '#F0FCF0',
-    'icon_url': 'assets/fn/carbon/security.svg',
-    'icon_class': 'fn-card__icon--security',
     'description': 'Security audits of 5N Products',
     'docs_url': 'security/introduction/'
-  },
-  {
-    'id': 'coming-soon',
-    'title': 'Coming Soon',
-    'icon_bg': '#161920',
-    'icon_url': 'assets/fn/icon-coming-soon.svg',
-    'icon_class': 'fn-card__icon--coming-soon',
-    'description': 'More products are coming soon...'
   }
 ] %}
 
@@ -94,11 +74,6 @@
             {% else %}
               <div class="fn-card fn-t">
             {% endif %}
-                <div class="fn-card__icon-wrap" style="background-color: {{ p.icon_bg }};">
-                  <div class="fn-card__icon {{ p.icon_class }}{% if not p.is_img %} fn-icon{% endif %}"
-                       style="background-image: url({{ p.icon_url | url }});"></div>
-                </div>
-
                 <div class="fn-card__body">
                   <div class="fn-card__title fn-t"
                        style="--fn-card-t-light: {{ p.title_color_light }}; --fn-card-t-dark: {{ p.title_color }};">
