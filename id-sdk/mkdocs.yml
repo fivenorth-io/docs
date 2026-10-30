@@ -1,0 +1,8 @@
+site_name: ID SDK
+docs_dir: .
+nav:
+  - Overview: introduction.md
+  - Installation: install.md
+  - API Reference: api-reference.md
+  - SDK Reference: sdk-reference.md
+  - Examples: examples.md
