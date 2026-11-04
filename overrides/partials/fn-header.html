@@ -7,7 +7,7 @@ Fivenorth custom header — FOUR sibling elements at body level:
             .fn-header__sticky which has backdrop-
             filter; placing it here lets position:fixed
             work relative to the real viewport).
-            4. <div .fn-mobile-nav> — hamburger drawer.
+            Hamburgers open Material's own nav drawer (see fn-theme.js).
                 #}
                 {% set fn_tabs = [
                 { 'label': 'Home', 'href': '' | url },
@@ -77,18 +77,4 @@ Fivenorth custom header — FOUR sibling elements at body level:
                     Mobile: fixed full-screen overlay when fn-mobile-search-active. #}
                     <div class="fn-search-wrap fn-t" data-fn-search-wrap>
                         {% include "partials/search.html" %}
-                    </div>
-
-                    {# ── 5. Mobile nav drawer ─────────────────────────────────────── #}
-                    <div class="fn-mobile-nav" data-fn-mobile-nav>
-                        <div>
-                            <div class="fn-mobile-nav__list">
-                                {% for tab in fn_tabs %}
-                                <a href="{{ tab.href }}" class="fn-mobile-nav__link fn-t" data-fn-tab {% if tab.external
-                                    %}target="_blank" rel="noopener noreferrer" {% endif %}>
-                                    {{ tab.label }}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        </div>
                     </div>

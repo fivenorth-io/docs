@@ -68,23 +68,51 @@
 
   /* ═════════════════ Mobile menu helpers ═════════════════ */
 
-  function closeMobileMenu() {
-    const drawer = document.querySelector('[data-fn-mobile-nav]');
-    const btn    = document.querySelector('[data-fn-hamburger]');
-    const line   = btn && btn.querySelector('.fn-hamburger-line');
-    if (drawer) drawer.classList.remove('fn-mobile-nav-open');
-    if (line)   line.classList.remove('fn-hamburger-open');
-    if (btn)    btn.setAttribute('aria-expanded', 'false');
+  /* Below 768px Material moves the section nav and page TOC into an
+     off-canvas drawer driven by `#__drawer`. Its own
+     opener lives in the Material header we hide, so our hamburgers drive
+     it. Pages with `hide: navigation` (home) still render the sidebar,
+     just `hidden`; fn-layout.css unhides it at these widths.
+     Breakpoint must match hooks/material_breakpoints.py. */
+  const DRAWER_MQ = window.matchMedia('(max-width: 47.984375em)');
+
+  function setHamburgerState(open) {
+    document.querySelectorAll('[data-fn-hamburger]').forEach(function (btn) {
+      const line = btn.querySelector('.fn-hamburger-line');
+      if (line) line.classList.toggle('fn-hamburger-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
   }
 
-  function toggleMobileMenu(btn) {
-    const drawer = document.querySelector('[data-fn-mobile-nav]');
-    const line   = btn.querySelector('.fn-hamburger-line');
-    if (!drawer || !line) return;
-    const open = drawer.classList.toggle('fn-mobile-nav-open');
-    line.classList.toggle('fn-hamburger-open', open);
-    btn.setAttribute('aria-expanded', String(open));
+  function setDocDrawer(open) {
+    const t = document.getElementById('__drawer');
+    if (!t || t.checked === open) return;
+    t.checked = open;
+    t.dispatchEvent(new Event('change', { bubbles: true }));
   }
+
+  function closeMobileMenu() {
+    setDocDrawer(false);
+    setHamburgerState(false);
+  }
+
+  function toggleMobileMenu() {
+    const t = document.getElementById('__drawer');
+    setDocDrawer(!(t && t.checked));
+  }
+
+  /* Keep the hamburger icon in sync when Material closes the drawer itself
+     (overlay tap, drawer title tap, instant navigation). */
+  document.addEventListener('change', function (e) {
+    if (e.target instanceof Element && e.target.id === '__drawer') {
+      setHamburgerState(e.target.checked);
+    }
+  });
+
+  /* Leaving drawer widths with the drawer open would leave it checked. */
+  DRAWER_MQ.addEventListener('change', function (e) {
+    if (!e.matches) closeMobileMenu();
+  });
 
   /* ═════════════════ Mobile search overlay ═════════════════
      .fn-search-wrap is now a direct sibling of .fn-header__sticky at
@@ -327,7 +355,7 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        toggleMobileMenu(btn);
+        toggleMobileMenu();
       });
     });
   }
@@ -414,17 +442,44 @@
     if (ham) {
       e.preventDefault();
       closeMobileSearch();   // close search if open
-      toggleMobileMenu(ham);
+      toggleMobileMenu();
       return;
     }
 
-    // Mobile nav link → close drawer
-    const mLink = target.closest('[data-fn-mobile-nav] a');
-    if (mLink) {
-      closeMobileMenu();
-    }
-
   }, { capture: false });
+
+  /* ═════════════════ Breadcrumb menus ═════════════════
+     partials/fn-breadcrumb.html renders sibling menus as <details>, which
+     open and close on their own. Add the dropdown niceties: one open at a
+     time, close on outside click, Escape, or picking a link. Bound once on
+     `document`, so it survives instant navigation. */
+  function closeCrumbMenus(except) {
+    document.querySelectorAll('[data-fn-crumb-menu][open]').forEach(function (d) {
+      if (d !== except) d.removeAttribute('open');
+    });
+  }
+
+  document.addEventListener('toggle', function (e) {
+    const d = e.target;
+    if (d instanceof Element && d.matches('[data-fn-crumb-menu]') && d.open) closeCrumbMenus(d);
+  }, true);
+
+  document.addEventListener('click', function (e) {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    const menu = t.closest('[data-fn-crumb-menu]');
+    if (!menu) closeCrumbMenus(null);
+    else if (t.closest('.fn-crumb-menu__link')) closeCrumbMenus(null);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    const open = document.querySelector('[data-fn-crumb-menu][open]');
+    if (!open) return;
+    closeCrumbMenus(null);
+    const s = open.querySelector('summary');
+    if (s) s.focus();
+  });
 
   /* ═════════════════ Bootstrap ═════════════════ */
 

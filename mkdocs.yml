@@ -50,6 +50,9 @@ theme:
   # auto-apply a scheme on load or render its own palette switcher — that
   # would fight the fivenorth theme toggle.
 
+hooks:
+  - hooks/material_breakpoints.py
+
 plugins:
   - search
   - glightbox
