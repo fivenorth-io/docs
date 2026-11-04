@@ -241,22 +241,45 @@
 
   /* ═════════════════ Active tab highlight ═════════════════ */
 
-  function isActiveTab(href) {
+  function normPath(href) {
+    const url = new URL(href, window.location.href);
+    if (url.origin !== window.location.origin) return null;
+    return url.pathname.replace(/\/index\.html$/, '/');
+  }
+
+  /* A tab links to one page of its section (e.g. 5n-dashboard/introduction/),
+     and section pages don't share a URL prefix (5N Infra spans hosted-node/,
+     sandbox/, sponsored-node/), so URL matching alone loses the highlight on
+     sub pages. Instead take every page under the active top-level item of
+     Material's nav, which is in the DOM on every page (hidden on home), and
+     mark the tab that links to one of them. */
+  function activeSectionPaths() {
+    const item = document.querySelector('.md-nav--primary > .md-nav__list > .md-nav__item--active');
+    if (!item) return null;
+    const paths = new Set();
+    item.querySelectorAll('a.md-nav__link[href]').forEach(function (a) {
+      const p = normPath(a.href);
+      if (p) paths.add(p);
+    });
+    return paths;
+  }
+
+  function isActiveTab(href, sectionPaths) {
     if (!href) return false;
     try {
-      const url = new URL(href, window.location.origin);
-      if (url.origin !== window.location.origin) return false;
-      const path   = window.location.pathname.replace(/\/index\.html$/, '/');
-      const target = url.pathname.replace(/\/index\.html$/, '/');
+      const target = normPath(href);
+      if (!target) return false;
+      if (sectionPaths) return sectionPaths.has(target);
+      const path = window.location.pathname.replace(/\/index\.html$/, '/');
       if (target === '/' || target === '') return path === '/' || path === '';
       return path === target || path.startsWith(target);
     } catch (_) { return false; }
   }
 
   function updateActiveTabs() {
+    const sectionPaths = activeSectionPaths();
     document.querySelectorAll('[data-fn-tab]').forEach(function (el) {
-      const href = el.getAttribute('href');
-      if (isActiveTab(href)) el.classList.add('is-active');
+      if (isActiveTab(el.href, sectionPaths)) el.classList.add('is-active');
       else el.classList.remove('is-active');
     });
   }
