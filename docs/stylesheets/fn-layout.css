@@ -36,7 +36,7 @@ body {
 .md-sidebar {
   top: 56px !important;
 }
-@media (max-width: 959px) {
+@media (max-width: 767px) {
   .md-sidebar { top: 0 !important; }
 }
 
@@ -126,12 +126,6 @@ body {
   width: 100%;
   gap: 16px;
   padding: 0 20px;
-}
-
-/* Mobile nav drawer also needs flex-item sizing */
-.fn-mobile-nav {
-  flex: 0 0 auto;
-  align-self: stretch;
 }
 
 .fn-logo-link {
@@ -822,11 +816,6 @@ label.md-search__overlay {
   transform: rotate(-45deg);
 }
 
-/* ── Mobile nav drawer ─────────────────────────────────────── */
-.fn-mobile-nav {
-  display: none;
-}
-
 /* Hamburger in brand bar — only on mobile, pushed right via margin-left: auto */
 .fn-hamburger--brand {
   display: none;
@@ -865,69 +854,128 @@ label.md-search__overlay {
 .fn-mobile-search-btn:hover { border-color: var(--fn-accent); color: var(--fn-accent); }
 .fn-mobile-search-btn.is-active { border-color: var(--fn-accent); color: var(--fn-accent); }
 
+/* ── Material section/TOC drawer ───────────────────────────────
+   Below 768px Material turns the primary sidebar into an off-canvas
+   drawer with the page TOC folded in (see hooks/material_breakpoints.py).
+   The brand-bar hamburger opens it via fn-theme.js, so lift it and its
+   backdrop above our header, and re-enable the backdrop we otherwise
+   neutralize. It is the only mobile menu, so it is also shown on
+   `hide: navigation` pages. */
+@media screen and (max-width: 47.984375em) {
+  .md-sidebar--primary {
+    top: 0 !important;
+    z-index: 70;
+  }
+
+  .md-sidebar--primary[hidden] {
+    display: block;
+  }
+
+  [data-md-toggle="drawer"]:checked ~ .md-overlay {
+    display: block !important;
+    pointer-events: auto !important;
+    z-index: 65;
+  }
+
+  .md-sidebar--primary {
+    border-right: 1px solid var(--fn-line);
+  }
+
+  .md-sidebar--primary .md-nav {
+    font-family: var(--fn-font-sans);
+  }
+
+  /* Drawer titles: Material paints the root one in the primary color with
+     `theme.logo` and site_name. Match our brand bar instead. */
+  .md-nav--primary .md-nav__title {
+    background-color: var(--fn-surface-raised);
+    box-shadow: none;
+    border-bottom: 1px solid var(--fn-line);
+    color: var(--fn-fg);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .md-nav--primary .md-nav__title[for="__drawer"] {
+    background-color: var(--fn-surface);
+    height: 61px; /* same as .fn-header__brand on mobile */
+    padding: 0;
+    font-size: 0; /* hide site_name text; the logo already reads "Docs" */
+    color: transparent;
+  }
+
+  .md-nav--primary .md-nav__title[for="__drawer"] .md-logo {
+    left: 16px;
+    right: 16px;
+    top: 12px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    background: url("../assets/fn/logo.svg") left center / contain no-repeat;
+  }
+
+  [data-md-color-scheme="slate"] .md-nav--primary .md-nav__title[for="__drawer"] .md-logo {
+    background-image: url("../assets/fn/footer-logo.svg");
+  }
+
+  .md-nav--primary .md-nav__title[for="__drawer"] .md-logo img {
+    display: none;
+  }
+
+  .md-nav--primary .md-nav__title ~ .md-nav__list {
+    background-color: var(--fn-surface);
+    box-shadow: none;
+  }
+
+  .md-nav--primary .md-nav__item {
+    border-top-color: var(--fn-line);
+  }
+
+  .md-nav--primary .md-nav__link {
+    color: var(--fn-fg);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .md-nav--primary .md-nav__item--active > .md-nav__link,
+  .md-nav--primary .md-nav__link:hover,
+  .md-nav--primary .md-nav__link--active {
+    color: var(--fn-accent);
+  }
+}
+
+/* 768–1219px: hooks/material_breakpoints.py gives Material its desktop
+   layout from 768px instead of 1220px, so the section nav shows as a
+   normal sidebar here. There is no room for the TOC as well, so hide it;
+   it comes back at 1220px. */
+@media screen and (min-width: 48em) and (max-width: 76.234375em) {
+  .md-sidebar--secondary:not([hidden]) {
+    display: none;
+  }
+
+  [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner {
+    margin-right: 0.8rem;
+  }
+}
+
+/* Below 960px Material also folds the page TOC into the nav under the
+   active page, behind a TOC icon. Undo that: the drawer and the 768–960px
+   sidebar list pages only, and the TOC stays hidden until 1220px. */
+@media screen and (max-width: 59.984375em) {
+  .md-nav--primary .md-nav__link[for="__toc"],
+  .md-nav--primary .md-nav__link[for="__toc"] ~ .md-nav {
+    display: none;
+  }
+
+  .md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
+    display: flex;
+  }
+}
+
 /* Mobile controls and nav */
 @media (max-width: 767px) {
   .fn-mobile-controls { display: flex; }
   .fn-hamburger--brand { display: flex; }
-
-  /* Mobile nav drawer — fixed below the sticky brand bar */
-  .fn-mobile-nav {
-    position: fixed;
-    top: 61px; /* brand bar: 16px padding-top + 32px logo + 12px padding-bottom + 1px border */
-    left: 0;
-    right: 0;
-    z-index: 49;
-    background: var(--fn-surface);
-    border-bottom: 1px solid transparent;
-    display: grid;
-    grid-template-rows: 0fr;
-    transition:
-      grid-template-rows var(--fn-duration-base) var(--fn-ease-out),
-      border-color var(--fn-duration-fast) var(--fn-ease);
-    overflow: hidden;
-  }
-
-  .fn-mobile-nav-open {
-    grid-template-rows: 1fr;
-    border-bottom-color: var(--fn-line);
-  }
-
-  .fn-mobile-nav > div {
-    overflow: hidden;
-  }
-
-  .fn-mobile-nav__list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 16px 20px 20px;
-  }
-
-  .fn-mobile-nav__link {
-    display: flex;
-    align-items: center;
-    border-radius: var(--fn-radius-md);
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--fn-fg);
-    text-decoration: none;
-    border: 1px solid transparent;
-    background: transparent;
-    transition:
-      color var(--fn-duration-fast) var(--fn-ease),
-      border-color var(--fn-duration-fast) var(--fn-ease);
-  }
-
-  .fn-mobile-nav__link:hover {
-    border-color: var(--fn-line);
-    color: var(--fn-fg-secondary);
-  }
-
-  .fn-mobile-nav__link.is-active {
-    border-color: var(--fn-line);
-    color: var(--fn-accent);
-  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1265,6 +1313,191 @@ label.md-search__overlay {
 /* Keep docs pages breathing room under the sticky header */
 .md-main {
   padding-top: 0.6rem;
+}
+
+/* ── Mini breadcrumb (partials/fn-breadcrumb.html) ─────────────
+   Same type scale as the footer copyright: 12px, muted, separators drawn
+   with a chevron mask so they follow currentColor in both themes. */
+.fn-breadcrumb {
+  margin: 0 0 12px;
+  font-family: var(--fn-font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.24px;
+}
+
+/* Beat Material's `[dir=ltr] .md-typeset ol` list margins and display. */
+.md-typeset .fn-breadcrumb ol.fn-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.md-typeset .fn-breadcrumb__list li.fn-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--fn-fg-muted);
+}
+
+.fn-breadcrumb__item + .fn-breadcrumb__item::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>') center / contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>') center / contain no-repeat;
+}
+
+.md-typeset a.fn-breadcrumb__link {
+  color: var(--fn-fg-secondary);
+  text-decoration: none;
+}
+
+.md-typeset a.fn-breadcrumb__link:hover,
+.md-typeset a.fn-breadcrumb__link:focus-visible {
+  color: var(--fn-accent);
+}
+
+.fn-breadcrumb__current {
+  color: var(--fn-fg);
+  font-weight: 500;
+}
+
+/* From 768px the section nav is a visible sidebar (see
+   hooks/material_breakpoints.py), which already shows where the page
+   sits, so only show the breadcrumb where the nav is in the drawer. */
+@media screen and (min-width: 48em) {
+  .md-sidebar--primary:not([hidden]) ~ .md-content .fn-breadcrumb {
+    display: none;
+  }
+}
+
+/* Sibling dropdown on each crumb below the top-level section. Panel
+   matches the search results dropdown (raised surface, line, radius).
+   Material styles every <details> in .md-typeset as a collapsible
+   admonition, so the reset selectors below are deliberately specific. */
+html .md-typeset details.fn-crumb-menu {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: inherit;
+  font-size: inherit;
+  overflow: visible;
+}
+
+html .md-typeset details.fn-crumb-menu > :last-child {
+  margin-bottom: 0;
+}
+
+.md-typeset .fn-crumb-menu > summary.fn-crumb-menu__toggle::before,
+.md-typeset .fn-crumb-menu > summary.fn-crumb-menu__toggle::after {
+  display: none;
+}
+
+.md-typeset .fn-crumb-menu > summary.fn-crumb-menu__toggle {
+  display: inline-flex;
+  font-weight: inherit;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  margin: -2px -4px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--fn-fg-secondary);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fn-crumb-menu__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.md-typeset .fn-crumb-menu > summary.fn-crumb-menu__toggle.fn-breadcrumb__current {
+  color: var(--fn-fg);
+  font-weight: 500;
+}
+
+.md-typeset .fn-crumb-menu > summary.fn-crumb-menu__toggle:hover,
+.md-typeset .fn-crumb-menu[open] > summary.fn-crumb-menu__toggle {
+  color: var(--fn-accent);
+  background: var(--fn-surface-inset);
+}
+
+.fn-crumb-menu__toggle:focus-visible {
+  outline: 2px solid var(--fn-accent);
+  outline-offset: 1px;
+}
+
+.fn-crumb-menu__chevron {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: transform var(--fn-duration-fast) var(--fn-ease);
+}
+
+.fn-crumb-menu[open] .fn-crumb-menu__chevron {
+  transform: rotate(180deg);
+}
+
+.md-typeset .fn-crumb-menu ul.fn-crumb-menu__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: -4px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: min(320px, 80vw);
+  max-height: 60vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--fn-surface-raised);
+  border: 1px solid var(--fn-line);
+  border-radius: var(--fn-radius-md);
+  box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.25);
+}
+
+.md-typeset .fn-crumb-menu ul.fn-crumb-menu__list li {
+  margin: 0;
+}
+
+.md-typeset a.fn-crumb-menu__link {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--fn-fg);
+  font-size: 13px;
+  letter-spacing: normal;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.md-typeset a.fn-crumb-menu__link:hover,
+.md-typeset a.fn-crumb-menu__link:focus-visible {
+  background: var(--fn-surface-inset);
+  color: var(--fn-accent);
+}
+
+.md-typeset a.fn-crumb-menu__link.is-active {
+  color: var(--fn-accent);
+  font-weight: 500;
 }
 
 /* Align Material's text on content pages with fn tokens */

@@ -2,6 +2,7 @@
   Global template override for all MkDocs Material pages.
   - Replaces the default Material header with the fivenorth header (includes pill tabs).
   - Replaces the default Material footer with the fivenorth footer.
+  - Adds the fivenorth mini breadcrumb above sub page content.
   - Removes Material's announcement bar and default tabs row.
 #}
 {% extends "base.html" %}
@@ -62,6 +63,11 @@
 {% endblock %}
 
 {% block tabs %}{% endblock %}
+
+{% block content %}
+  {% include "partials/fn-breadcrumb.html" %}
+  {{ super() }}
+{% endblock %}
 
 {% block footer %}
   {% include "partials/fn-footer.html" %}

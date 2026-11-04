@@ -1,0 +1,70 @@
+{#
+  Fivenorth mini breadcrumb, shown above the page title on sub pages.
+  Material 9.6 has no free breadcrumb (navigation.path), so build it from
+  page.ancestors. The top-level section links to its first page, same as
+  the header tabs. Every deeper crumb is a dropdown of its siblings, so
+  readers can jump across a section from here. Sections have no URL of
+  their own, so section entries link to their first page. Hidden with
+  `hide: path`.
+#}
+{% macro fn_first_url(item) -%}
+  {%- if item.children -%}
+    {{- fn_first_url(item.children | first) -}}
+  {%- else -%}
+    {{- item.url | url -}}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro fn_crumb_menu(title, siblings, current) %}
+  <details class="fn-crumb-menu" data-fn-crumb-menu>
+    <summary class="fn-crumb-menu__toggle fn-t{% if current %} fn-breadcrumb__current{% endif %}"
+             {% if current %}aria-current="page"{% endif %}>
+      {{ title }}
+      <svg class="fn-crumb-menu__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <ul class="fn-crumb-menu__list">
+      {% for item in siblings %}
+        <li>
+          <a href="{{ fn_first_url(item) }}"
+             class="fn-crumb-menu__link fn-t{% if item.active %} is-active{% endif %}"
+             {% if item.active %}aria-current="true"{% endif %}>{{ item.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </details>
+{% endmacro %}
+
+{% if page and page.ancestors and "path" not in page.meta.get("hide", []) %}
+  {% set fn_crumbs = [] %}
+  {% for section in page.ancestors | reverse %}
+    {% set _ = fn_crumbs.append(section) %}
+  {% endfor %}
+  {% set fn_show_page = fn_crumbs[-1].title != page.title %}
+
+  {% if fn_crumbs | length > 1 or fn_show_page %}
+    <nav class="fn-breadcrumb fn-t" aria-label="Breadcrumb">
+      <ol class="fn-breadcrumb__list">
+        {% for section in fn_crumbs %}
+          <li class="fn-breadcrumb__item">
+            {% if section.parent and section.parent.children | length > 1 %}
+              {{ fn_crumb_menu(section.title, section.parent.children, false) }}
+            {% else %}
+              <a href="{{ fn_first_url(section) }}" class="fn-breadcrumb__link fn-t">{{ section.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+        {% if fn_show_page %}
+          <li class="fn-breadcrumb__item">
+            {% if page.parent and page.parent.children | length > 1 %}
+              {{ fn_crumb_menu(page.title, page.parent.children, true) }}
+            {% else %}
+              <span class="fn-breadcrumb__current" aria-current="page">{{ page.title }}</span>
+            {% endif %}
+          </li>
+        {% endif %}
+      </ol>
+    </nav>
+  {% endif %}
+{% endif %}
