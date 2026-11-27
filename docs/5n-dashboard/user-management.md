@@ -8,14 +8,14 @@ Click on "Create User" button on the top right and enter:
 
 - User ID: this is mapped to the User ID on your OIDC system
 - Primary Party: the party id of this user. Eg, if you want this user to be able to login to the wallet operator party, use that as primary party
-- Rights: we support a few common canton right such as `can act as`, `cat read as`, `can read as any` and `participant admin`
+- Rights: we support six Canton rights: `can act as`, `can read as` and `can execute as` (for one party each), `participant admin`, `can read as any party` and `can execute as any party`
 
 
 ## Delete user
 
 Simply click on the trash icon to delete a user
 
-## Deactive user
+## Deactivate user
 
 Edit the user and check the box "Deactivate user" then click Save
 

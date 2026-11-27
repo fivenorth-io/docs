@@ -11,7 +11,7 @@ From the Home or DARs page:
 
 ### Demo
 
-<video controls>
+<video controls preload="metadata" poster="/assets/5n-dashboard/dar-management.jpg">
   <source src="/assets/5n-dashboard/dar-management.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>

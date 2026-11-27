@@ -27,28 +27,28 @@ We welcome any feedback, email us at nodesupport@fivenorth.io
 
 ### DARs management
 
-<video controls>
+<video controls preload="metadata" poster="/assets/5n-dashboard/dar-management.jpg">
   <source src="/assets/5n-dashboard/dar-management.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Users management
 
-<video controls>
+<video controls preload="metadata" poster="/assets/5n-dashboard/manage-user.jpg">
   <source src="/assets/5n-dashboard/manage-user.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Parties management
 
-<video controls>
+<video controls preload="metadata" poster="/assets/5n-dashboard/manage-party.jpg">
   <source src="/assets/5n-dashboard/manage-party.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 ### Shell execution
 
-<video controls>
+<video controls preload="metadata" poster="/assets/5n-dashboard/run-shell.jpg">
   <source src="/assets/5n-dashboard/run-shell.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
